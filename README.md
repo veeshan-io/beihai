@@ -21,7 +21,7 @@ chsh $USER -s /usr/bin/fish
 > Relogin..
 
 ```sh
-curl -sfL https://gitee.com/veeshan/ashe/raw/master/install.fish | fish -
+curl -sfL https://gitee.com/veeshan/ashe/raw/master/install.fish | fish
 ```
 
 ### 初始化
