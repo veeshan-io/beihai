@@ -38,7 +38,7 @@ function play-escort -a book inventory subject
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
 
-complete -c play-escort -a "(___show-book $HOME/.local/share/ashe/escort)" -F
+complete -c play-escort -a "(___show-book $HOME/.local/share/ashe/escort)"
 
 function play-node -a book inventory subject
   set -l __DIR $HOME/.local/share/ashe/node
