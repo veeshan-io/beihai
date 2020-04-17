@@ -20,7 +20,7 @@ function play-plane -a book inventory subject
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
 
-complete -c play-plane -a (___show-book $HOME/.local/share/ashe/plane)
+complete -c play-plane -f -a "(___show-book $HOME/.local/share/ashe/plane)"
 
 function play-escort -a book inventory subject
   set -l __DIR $HOME/.local/share/ashe/escort
@@ -38,7 +38,7 @@ function play-escort -a book inventory subject
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
 
-complete -c play-escort -a (___show-book $HOME/.local/share/ashe/escort)
+complete -c play-escort -f -a "(___show-book $HOME/.local/share/ashe/escort)"
 
 function play-node -a book inventory subject
   set -l __DIR $HOME/.local/share/ashe/node
@@ -56,4 +56,4 @@ function play-node -a book inventory subject
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
 
-complete -c play-node -a (___show-book $HOME/.local/share/ashe/node)
+complete -c play-node -f -a "(___show-book $HOME/.local/share/ashe/node)"
