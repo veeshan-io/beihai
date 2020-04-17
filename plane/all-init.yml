@@ -1,0 +1,6 @@
+---
+- import_playbook: local-init.yml
+- import_playbook: access-init.yml
+- import_playbook: bus-init.yml
+- import_playbook: jobber-init.yml
+- import_playbook: worker-init.yml

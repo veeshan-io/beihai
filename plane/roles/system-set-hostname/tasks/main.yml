@@ -1,0 +1,8 @@
+- name: register service
+  shell: |
+    docker-compose exec worker_node pm2 start /worker/apps/{{ item }}/pm2_{{ env }}.json
+  args:
+    chdir: "{{ dc_root }}"
+  register: swap_exists
+  failed_when: "'Use `pm2 show' not in swap_exists.stdout"
+  with_items: "{{ services }}"

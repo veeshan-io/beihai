@@ -1,0 +1,15 @@
+[all:vars]
+apt_install=git php-cli tree fish
+
+[plane]
+borne.plane   hostname=host-plane-borne
+
+[plane:vars]
+
+[escort:vars]
+
+[escort]
+
+[node:vars]
+
+[node]

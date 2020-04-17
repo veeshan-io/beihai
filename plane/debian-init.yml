@@ -1,0 +1,10 @@
+---
+- name: Init debian server
+  hosts: workers
+  remote_user: root
+  # environment:
+  #   PATH: /home/worker/.local/bin:{{ ansible_env.PATH }}
+  vars:
+  roles:
+    - role: system-set-hostname
+      # vars:
