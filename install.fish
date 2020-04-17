@@ -15,6 +15,8 @@ else
   git -C $__SHARE clone https://gitee.com/veeshan/ashe.git
 end
 
-rm $HOME/.config/fish/conf.d/play.fish
+if test -f $HOME/.config/fish/conf.d/play.fish
+  rm $HOME/.config/fish/conf.d/play.fish
+end
 ln -s $HOME/.local/share/ashe/play.fish $HOME/.config/fish/conf.d/play.fish
 fish -l
