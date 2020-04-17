@@ -1,7 +1,6 @@
 function ___show-book -a path
-  echo - Books:
-  for name in string split ' ' (string replace '.yml' '' (echo $path/*.yml))
-    echo $name
+  for name in (string split ' ' (string replace -a '.yml' '' (echo $path/*.yml)))
+    echo (string split '/' $name)[-1]
   end
 end
 
@@ -13,12 +12,15 @@ function play-plane -a book inventory subject
 
   if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
     echo Usage: ./play \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    echo - Books:
     ___show-book $__DIR
     return $OMF_UNKNOWN_OPT
   end
 
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
+
+complete -c play-plane -a (___show-book $HOME/.local/share/ashe/plane)
 
 function play-escort -a book inventory subject
   set -l __DIR $HOME/.local/share/ashe/escort
@@ -28,12 +30,15 @@ function play-escort -a book inventory subject
 
   if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
     echo Usage: ./play \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    echo - Books:
     ___show-book $__DIR
     return $OMF_UNKNOWN_OPT
   end
 
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
+
+complete -c play-escort -a (___show-book $HOME/.local/share/ashe/escort)
 
 function play-node -a book inventory subject
   set -l __DIR $HOME/.local/share/ashe/node
@@ -43,9 +48,12 @@ function play-node -a book inventory subject
 
   if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
     echo Usage: ./play \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    echo - Books:
     ___show-book $__DIR
     return $OMF_UNKNOWN_OPT
   end
 
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
+
+complete -c play-node -a (___show-book $HOME/.local/share/ashe/node)

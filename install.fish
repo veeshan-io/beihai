@@ -19,7 +19,7 @@ function ___install-ashe
   if test -f $HOME/.config/fish/conf.d/play.fish
     rm $HOME/.config/fish/conf.d/play.fish
   end
-  ln -s $__SHARE/ashe/play.fish $HOME/.config/fish/conf.d/play.fish
+  ln -s $__SHARE/ashe/init.fish $HOME/.config/fish/conf.d/ashe-init.fish
   fish -l
 end
 
