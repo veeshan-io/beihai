@@ -8,9 +8,7 @@ Beihai下的ashe环境构建机制
 
 基于`Ansible`+`AWX`实现用于各个环境的初始搭建。
 
-## 安装教程
-
-### Install
+## Install
 
 ```sh
 apt update;apt upgrade -y
@@ -24,18 +22,16 @@ chsh $USER -s /usr/bin/fish
 curl -sfL https://gitee.com/veeshan/ashe/raw/master/install.fish | fish
 ```
 
-#### Uninstall
+### Uninstall
 
 ```sh
 curl -sfL https://gitee.com/veeshan/ashe/raw/master/uninstall.fish | fish
 ```
 
-### 初始化
+## Usage
+
+### Update ashe
 
 ```sh
-git clone https://gitee.com/veeshan/ashe.git
-cd ashe
-chmod +x ./
+ashe-update
 ```
-
-#### 使用说明

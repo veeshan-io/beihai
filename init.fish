@@ -5,8 +5,11 @@ function ___show-book -a path
 end
 
 function ashe-update
-  cd $HOME/.local/share/ashe
-  git add * && git stash && git pull --rebase && git stash pop
+  set -l DIR $HOME/.local/share/ashe
+  git -C $DIR add \*
+  git -C $DIR stash
+  git -C $DIR pull --rebase
+  git -C $DIR stash pop
 end
 
 function play-plane -a book inventory subject
