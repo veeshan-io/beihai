@@ -10,7 +10,7 @@ Beihai下的ashe环境构建机制
 
 ## 安装教程
 
-### 环境安装
+### Install
 
 ```sh
 apt update;apt upgrade -y
@@ -22,6 +22,12 @@ chsh $USER -s /usr/bin/fish
 
 ```sh
 curl -sfL https://gitee.com/veeshan/ashe/raw/master/install.fish | fish
+```
+
+#### Uninstall
+
+```sh
+curl -sfL https://gitee.com/veeshan/ashe/raw/master/uninstall.fish | fish
 ```
 
 ### 初始化
