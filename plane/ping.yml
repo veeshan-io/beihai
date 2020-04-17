@@ -1,0 +1,10 @@
+---
+- name: Ping
+  hosts: all
+  remote_user: root
+  # environment:
+  #   PATH: /home/worker/.local/bin:{{ ansible_env.PATH }}
+  vars:
+  tasks:
+    - ping:
+        data: pong
