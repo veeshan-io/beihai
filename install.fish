@@ -16,8 +16,8 @@ function ___install-ashe
     git -C $__SHARE clone https://gitee.com/veeshan/ashe.git
   end
 
-  if test -f $HOME/.config/fish/conf.d/play.fish
-    rm $HOME/.config/fish/conf.d/play.fish
+  if test -f $HOME/.config/fish/conf.d/ashe-init.fish
+    rm $HOME/.config/fish/conf.d/ashe-init.fish
   end
   ln -s $__SHARE/ashe/init.fish $HOME/.config/fish/conf.d/ashe-init.fish
   fish -l
