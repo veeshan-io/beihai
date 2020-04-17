@@ -4,8 +4,6 @@ function play-book -a book inventory subject
     echo ashe is removed.
   end
 
-  set -l DIR (dirname (status -f))
-
   if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
     echo Usage: ./play \<book\> \<inventory\> \<subject\>[ \<extra\>]
     echo (string replace '.yml' '' (echo $__DIR/*.yml))
