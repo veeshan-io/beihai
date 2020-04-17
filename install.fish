@@ -10,7 +10,7 @@ if not test -d $__SHARE
 end
 
 if test -d $HOME/.local/share/ashe
-  git -C $__SHARE add * && git -C $__SHARE stash && git -C $__SHARE pull --rebase &&  git -C $__SHARE stash apply
+  git -C $__SHARE/ashe add * && git -C $__SHARE/ashe stash && git -C $__SHARE/ashe pull --rebase &&  git -C $__SHARE/ashe stash apply
 else
   git -C $__SHARE clone https://gitee.com/veeshan/ashe.git
 end
