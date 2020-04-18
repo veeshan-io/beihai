@@ -18,7 +18,8 @@ function ashe-update
   git -C $DIR add \*
   git -C $DIR stash
   git -C $DIR pull --rebase
-  git -C $DIR stash pop
+  git -C $DIR stash drop
+  # git -C $DIR stash pop
 end
 # ansible-playbook -i inv-main/inventories/plane/hosts.inv --list-hosts --limit=plane .local/share/ashe/plane/ping.yml
 function play-plane -a book inventory subject
