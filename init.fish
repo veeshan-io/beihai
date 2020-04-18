@@ -6,7 +6,7 @@ end
 
 function ___play-book -a book inventory subject
   if not test -f $book
-    echo The book [ $inventory ] is not exists.
+    echo The book [ $book ] is not exists.
     return $OMF_UNKNOWN_OPT
   end
 
