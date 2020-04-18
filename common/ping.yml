@@ -5,6 +5,13 @@
   # environment:
   #   PATH: /home/worker/.local/bin:{{ ansible_env.PATH }}
   vars:
+    pub_key:  "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+    result:
+      aaa:  10
+      bbb:  20
   tasks:
     - ping:
         data: pong
+    - debug:
+        var:  result
+        msg:  "{{ lookup('file', '{{ pub_key }}') }}"

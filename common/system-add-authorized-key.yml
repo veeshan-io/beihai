@@ -1,0 +1,15 @@
+---
+- name: Add authorized key
+  # hosts: workers
+  remote_user: root
+  # environment:
+  #   PATH: /home/worker/.local/bin:{{ ansible_env.PATH }}
+  vars:
+    target:   root
+    pub_key:  "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+  tasks:
+    - name: Add authorized key taken from file
+      authorized_key:
+        user:       "{{ target }}"
+        state:      present
+        key:        "{{ lookup('file', '{{ pub_key }}') }}"

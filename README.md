@@ -12,7 +12,7 @@ Beihai下的ashe环境构建机制
 
 ```sh
 apt update;apt upgrade -y
-apt install -y ansible git fish
+apt install -y ansible git fish sshpass
 chsh $USER -s /usr/bin/fish
 ```
 
@@ -38,11 +38,26 @@ ashe-update
 
 ## Init servers
 
-ansible all -m authorized_key -a "user=root key='{{ lookup('file', '/root/.ssh/id_rsa.pub')}}' path='/root/.ssh/authorized_keys' manage_dir=no" --ask-pass -c paramiko
+Ashe系统的初始化包括以下几部分。
 
-看能不能配合koi进行主动拉取统一密钥的方式。不行好像还是要推的。
+### 用户部分
 
-公钥放到inv的变量中
-服务器列表在uranus/servers中，支持指定密码
-通用密码在uranus/ashe中
-整理一下安全组，并在安全组中设置ssh白名单限制，分两种，全禁和白名单
+|用户|||
+|---|---|---|
+|`root`|基础环境部署|优先初始化密钥|
+|`ashe`|应用级部署|在`root`之后创建并初始化密钥|
+|用户帐号|运维操作人员登录|根据需求进行密钥初始化|
+
+
+以下应用在zero或是具体人员操作机器上根据需要执行
+
+```sh
+# root初始化指令
+play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k
+
+# ashe初始化指令
+play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k -a target=ashe
+
+# 个人用户初始化指令
+play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k -a target=<user> pub_key=</path/to/key>
+```
