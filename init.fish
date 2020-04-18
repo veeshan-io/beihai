@@ -6,12 +6,14 @@ end
 
 function play-book -a kind book inventory subject
 
+  echo $argv
+
   if not test -d $HOME/.local/share/ashe
     echo ashe is removed.
   end
 
   if test -z "$kind";
-    echo Usage: ./play-book \<kind\> \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    echo Usage: ./play-$kind \<book\> \<inventory\> \<subject\>[ \<...extra\>]
     return $OMF_UNKNOWN_OPT
   end
 
@@ -21,7 +23,7 @@ function play-book -a kind book inventory subject
     return $OMF_UNKNOWN_OPT
   end
   if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
-    echo Usage: ./play-book \<kind\> \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    echo Usage: ./play-$kind \<book\> \<inventory\> \<subject\>[ \<...extra\>]
     echo - Books:
     ___show-book $__DIR
     return $OMF_UNKNOWN_OPT
@@ -33,7 +35,7 @@ function play-book -a kind book inventory subject
     return $OMF_UNKNOWN_OPT
   end
 
-  ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
+  ansible-playbook -i $inventory -l $subject $book $argv[5..-1]
 end
 
 alias play-common "play-book common $argv"
