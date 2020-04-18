@@ -4,7 +4,7 @@ function ___show-book -a path
   end
 end
 
-function play-book -a kind book inventory subject
+function play-book -d "play ashe book" -a kind book inventory subject
 
   echo $argv
 
