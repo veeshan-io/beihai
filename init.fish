@@ -36,11 +36,16 @@ function play-book -a kind book inventory subject
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
 
-complete -c play-book -a "common plane node escort"
-complete -c play-book common -a "(___show-book $HOME/.local/share/ashe/common)"
-complete -c play-book plane -a "(___show-book $HOME/.local/share/ashe/plane)"
-complete -c play-book node -a "(___show-book $HOME/.local/share/ashe/node)"
-complete -c play-book escort -a "(___show-book $HOME/.local/share/ashe/escort)"
+alias play-common play-book common $argv
+alias play-plane play-book plane $argv
+alias play-node play-book node $argv
+alias play-escort play-book escort $argv
+
+# complete -c play-book -f -a "common plane node escort"
+complete -c 'play-book-common' -a "(___show-book $HOME/.local/share/ashe/common)"
+complete -c 'play-book-plane' -a "(___show-book $HOME/.local/share/ashe/plane)"
+complete -c 'play-book-node' -a "(___show-book $HOME/.local/share/ashe/node)"
+complete -c 'play-book-escort' -a "(___show-book $HOME/.local/share/ashe/escort)"
 
 
 function ashe-update
