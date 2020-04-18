@@ -4,7 +4,30 @@ function ___show-book -a path
   end
 end
 
-function ___play-book -a book inventory subject
+function play-book -a kind book inventory subject
+
+  if not test -d $HOME/.local/share/ashe
+    echo ashe is removed.
+  end
+
+  if test -z "$kind";
+    echo Usage: ./play-book \<kind\> \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    return $OMF_UNKNOWN_OPT
+  end
+
+  set -l __DIR $HOME/.local/share/ashe/$kind
+  if not test -d $__DIR
+    echo The kind [ $kine ] is not exists.
+    return $OMF_UNKNOWN_OPT
+  end
+  if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
+    echo Usage: ./play-book \<kind\> \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+    echo - Books:
+    ___show-book $__DIR
+    return $OMF_UNKNOWN_OPT
+  end
+
+  set book $__DIR/$book.yml
   if not test -f $book
     echo The book [ $book ] is not exists.
     return $OMF_UNKNOWN_OPT
@@ -12,6 +35,13 @@ function ___play-book -a book inventory subject
 
   ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
 end
+
+complete -c play-book -a "common plane node escort"
+complete -c play-book common -a "(___show-book $HOME/.local/share/ashe/common)"
+complete -c play-book plane -a "(___show-book $HOME/.local/share/ashe/plane)"
+complete -c play-book node -a "(___show-book $HOME/.local/share/ashe/node)"
+complete -c play-book escort -a "(___show-book $HOME/.local/share/ashe/escort)"
+
 
 function ashe-update
   set -l DIR $HOME/.local/share/ashe
@@ -22,59 +52,3 @@ function ashe-update
   # git -C $DIR stash pop
 end
 # ansible-playbook -i inv-main/inventories/plane/hosts.inv --list-hosts --limit=plane .local/share/ashe/plane/ping.yml
-function play-plane -a book inventory subject
-  set -l __DIR $HOME/.local/share/ashe/plane
-  if not test -d $__DIR
-    echo ashe is removed.
-  end
-
-  if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
-    echo Usage: ./play-plane \<book\> \<inventory\> \<subject\>[ \<...extra\>]
-    echo - Books:
-    ___show-book $__DIR
-    return $OMF_UNKNOWN_OPT
-  end
-
-  set book $__DIR/$book.yml
-  ___play-book $book $inventory $subject $argv[4..-1]
-end
-
-complete -c play-plane -a "(___show-book $HOME/.local/share/ashe/plane)"
-
-function play-escort -a book inventory subject
-  set -l __DIR $HOME/.local/share/ashe/escort
-  if not test -d $__DIR
-    echo ashe is removed.
-  end
-
-  if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
-    echo Usage: ./play-escort \<book\> \<inventory\> \<subject\>[ \<...extra\>]
-    echo - Books:
-    ___show-book $__DIR
-    return $OMF_UNKNOWN_OPT
-  end
-
-  set book $__DIR/$book.yml
-  ___play-book $book $inventory $subject $argv[4..-1]
-end
-
-complete -c play-escort -a "(___show-book $HOME/.local/share/ashe/escort)"
-
-function play-node -a book inventory subject
-  set -l __DIR $HOME/.local/share/ashe/node
-  if not test -d $__DIR
-    echo ashe is removed.
-  end
-
-  if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
-    echo Usage: ./play-node \<book\> \<inventory\> \<subject\>[ \<...extra\>]
-    echo - Books:
-    ___show-book $__DIR
-    return $OMF_UNKNOWN_OPT
-  end
-
-  set book $__DIR/$book.yml
-  ___play-book $book $inventory $subject $argv[4..-1]
-end
-
-complete -c play-node -a "(___show-book $HOME/.local/share/ashe/node)"
