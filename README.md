@@ -14,9 +14,13 @@ Beihai下的ashe环境构建机制
 apt update;apt upgrade -y
 apt install -y ansible git fish sshpass
 chsh $USER -s /usr/bin/fish
+```
+
+**要去掉know host检测**
+
+```sh
 sed -i "s@#host_key_checking = False@host_key_checking = False@g" /etc/ansible/ansible.cfg
 ```
-sed "s@#host_key_checking = False@host_key_checking = False@g" /etc/ansible/ansible.cfg
 
 > Relogin..
 
