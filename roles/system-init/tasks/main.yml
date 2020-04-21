@@ -10,7 +10,7 @@
 
 - name: Change apt source
   shell: |
-    cp -f /etc/apt/sources.list /etc/apt/sources.list.origin;sed -i "s@deb.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list
+    sed -i "s@deb.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list
   args:
     chdir: "~/"
 
@@ -19,10 +19,17 @@
     name:   "{{ apt.install }}"
     state:  present
     update_cache: yes
-- apt:
+- name: Apt upgrade
+  apt:
     upgrade: yes
-- apt:
-    autoclean: yes
-- apt:
+- name: Apt autoremove
+  apt:
     autoremove: yes
+- name: Apt autoclean
+  apt:
+    autoclean: yes
 
+- name: "Set group wheel"
+  group:
+    name:       wheel
+    state:      present
