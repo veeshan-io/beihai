@@ -1,0 +1,6 @@
+---
+- name: Add authorized key taken from file
+  authorized_key:
+    user:       "{{ target }}"
+    state:      present
+    key:        "{{ lookup('file', '{{ pub_key }}') }}"

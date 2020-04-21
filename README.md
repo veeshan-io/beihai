@@ -75,3 +75,4 @@ play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane
 play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k -e target=<user> -e pub_key=</path/to/key>
 ```
 
+# ansible-playbook -i inv-main/inventories/plane/hosts.inv --list-hosts --limit=plane .local/share/ashe/plane/ping.yml

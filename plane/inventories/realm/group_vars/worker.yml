@@ -1,9 +1,0 @@
----
-data_dirs:
-  - apps
-  - logs
-  - tmp
-
-home_ln:
-  path:   /home/worker
-  source: /data

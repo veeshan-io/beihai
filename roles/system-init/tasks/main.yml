@@ -1,0 +1,28 @@
+---
+- name: Set host name
+  shell: |
+    sed -i '$a 127.0.1.1       {{ hostname }}' /etc/hosts;echo '{{ hostname }}' > /etc/hostname
+  args:
+    chdir: "~/"
+  # register: swap_exists
+  # failed_when: "'Use `pm2 show' not in swap_exists.stdout"
+  # with_items: "{{ services }}"
+
+- name: Change apt source
+  shell: |
+    cp -f /etc/apt/sources.list /etc/apt/sources.list.origin;sed -i "s@deb.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list
+  args:
+    chdir: "~/"
+
+- name: Install apps from apt
+  apt:
+    name:   {{ apt.install }}
+    state:  present
+    update_cache: yes
+- apt:
+    upgrade: yes
+- apt:
+    autoclean: yes
+- apt:
+    autoremove: yes
+

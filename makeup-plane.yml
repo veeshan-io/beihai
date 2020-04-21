@@ -1,0 +1,9 @@
+---
+- name: Init plane servers
+  hosts: plane
+  remote_user: root
+  vars:
+  roles:
+    - name:
+      role: system-set-hostname
+      # vars:
