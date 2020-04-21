@@ -1,12 +1,14 @@
 ---
+
+- name: Update hostname in hosts
+  replace:
+    path: /etc/hosts
+    regexp: '{{ ansible_hostname }}'
+    replace: '{{ hostname }}'
+
 - name: Set host name
-  shell: |
-    sed -i '$a 127.0.1.1       {{ hostname }}' /etc/hosts;echo '{{ hostname }}' > /etc/hostname
-  args:
-    chdir: "~/"
-  # register: swap_exists
-  # failed_when: "'Use `pm2 show' not in swap_exists.stdout"
-  # with_items: "{{ services }}"
+  hostname:
+    name: "{{ hostname }}"
 
 - name: Change apt source
   shell: |
