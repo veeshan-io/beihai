@@ -16,7 +16,7 @@
 
 - name: Install apps from apt
   apt:
-    name:   {{ apt.install }}
+    name:   "{{ apt.install }}"
     state:  present
     update_cache: yes
 - apt:
