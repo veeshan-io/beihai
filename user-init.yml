@@ -1,5 +1,6 @@
 ---
 - name: Init user
+  hosts: all
   remote_user: root
   vars:
     target: root

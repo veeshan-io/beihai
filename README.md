@@ -44,10 +44,10 @@ ashe-update
 
 ### Ping your servers
 
-假设 inventory 在 inventories/plane/hosts.inv 下
+假设 inventory 在 inv-main/inventories/plane/hosts.inv 下
 
 ```sh
-play-common ping inventories/plane/hosts.inv plane -k
+play-book ping inv-main/inventories/hosts.inv plane -k
 ```
 
 ## Init servers
@@ -65,8 +65,8 @@ Ashe系统的初始化包括以下几部分。
 以下应用在zero或是具体人员操作机器上根据需要执行
 
 ```sh
-# root初始化指令
-play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k
+# root访问公钥初始化
+play-book root-sshkey inv-main/inventories/hosts.inv plane -k
 
 # ashe初始化指令
 play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k -e target=ashe
