@@ -5,5 +5,5 @@
   vars:
   roles:
     - name:
-      role: system-set-hostname
+      role: system-init
       # vars:
