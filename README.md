@@ -1,12 +1,8 @@
 # ashe
 
-## 介绍
+## Intro
 
-Beihai下的ashe环境构建机制
-
-## 软件架构
-
-基于`Ansible`+`AWX`实现用于各个环境的初始搭建。
+Beihai下的ashe环境构建机制，基于`Ansible`实现用于各个环境的初始搭建。也可以自行搭建`AWX`配合GUI界面使用。
 
 ## Install
 
@@ -16,7 +12,7 @@ apt install -y ansible git fish sshpass
 chsh $USER -s /usr/bin/fish
 ```
 
-**要去掉know host检测**
+**去掉 know host 检测**
 
 ```sh
 sed -i "s@#host_key_checking = False@host_key_checking = False@g" /etc/ansible/ansible.cfg
@@ -44,35 +40,45 @@ ashe-update
 
 ### Ping your servers
 
-假设 inventory 在 inv-main/inventories/plane/hosts.inv 下
+假设 inventory 在 inv-main/inventories/development/hosts.inv 下
 
 ```sh
-play-book ping inv-main/inventories/hosts.inv plane -k
+play-book ping inv-main/inventories/development/hosts.inv -k
 ```
 
-## Init servers
+### Set authorized key
 
-Ashe系统的初始化包括以下几部分。
-
-### 用户部分
-
-|用户|||
-|---|---|---|
-|`root`|基础环境部署|优先初始化密钥|
-|`ashe`|应用级部署|在`root`之后创建并初始化密钥|
-|用户帐号|运维操作人员登录|根据需求进行密钥初始化|
-
-以下应用在zero或是具体人员操作机器上根据需要执行
+首先利用密码登录并给各服务器传送密钥。
 
 ```sh
-# root访问公钥初始化
-play-book root-sshkey inv-main/inventories/hosts.inv plane -k
-
-# ashe初始化指令
-play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k -e target=ashe
-
-# 个人用户初始化指令
-play-common system-set-authorized-key inv-main/inventories/plane/hosts.inv plane -k -e target=<user> -e pub_key=</path/to/key>
+play-book root-sshkey inv-main/inventories/development/hosts.inv -k
 ```
 
-# ansible-playbook -i inv-main/inventories/plane/hosts.inv --list-hosts --limit=plane .local/share/ashe/plane/ping.yml
+### Update servers
+
+```sh
+play-book makeup-all inv-main/inventories/development/hosts.inv
+```
+
+### User control
+
+通过非inventory配置创建个人用户
+
+```sh
+# 建议通过`-l`参数控制操作范围
+play-book user-set inv-main/inventories/development/hosts.inv -l plane  -e target=newuser
+
+# 完整参数
+play-book user-set inv-main/inventories/development/hosts.inv -l plane  -e target=newuser \
+  -e target_password=123123 \
+  -e target_groups=wheel \
+  -e pub_key=xxxxxx
+```
+
+通过非inventory配置关闭个人用户
+
+```sh
+play-book user-ban inv-main/inventories/development/hosts.inv -k -e target=banuser -e pub_key=pubkey
+```
+
+## Make inventory
