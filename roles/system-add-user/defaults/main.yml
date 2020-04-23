@@ -1,3 +1,0 @@
----
-target: root
-pub_key: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"

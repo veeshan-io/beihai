@@ -4,15 +4,15 @@ function ___show-book -a path
   end
 end
 
-function play-book -d "play ashe book" -a book inventory subject
+function play-book -d "play ashe book" -a book inventory
   if not test -d $HOME/.local/share/ashe
     echo ashe is removed.
   end
 
   set -l __DIR $HOME/.local/share/ashe
 
-  if test -z "$inventory"; or test -z "$subject"; or test -z "$book"
-    echo Usage: ./play-book \<book\> \<inventory\> \<subject\>[ \<...extra\>]
+  if test -z "$inventory"; or test -z "$book"
+    echo Usage: ./play-book \<book\> \<inventory\>[ \<...extra\>]
     echo - Books:
     ___show-book $__DIR
     return $OMF_UNKNOWN_OPT
@@ -24,7 +24,7 @@ function play-book -d "play ashe book" -a book inventory subject
     return $OMF_UNKNOWN_OPT
   end
 
-  ansible-playbook -i $inventory -l $subject $book $argv[4..-1]
+  ansible-playbook -i $inventory $book $argv[4..-1]
 end
 
 complete -c play-book -a "(___show-book $HOME/.local/share/ashe)"

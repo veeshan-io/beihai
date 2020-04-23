@@ -1,9 +1,9 @@
 ---
-- name: Init plane servers
+- name: Update plane servers
   hosts: plane
   remote_user: root
   vars:
   roles:
     - name:
-      role: system-init
+      role: system-users
       # vars:

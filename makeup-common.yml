@@ -1,0 +1,9 @@
+---
+- name: Init servers
+  hosts: all
+  remote_user: root
+  vars:
+  roles:
+    - name: Init system
+      role: system-init
+      # vars:

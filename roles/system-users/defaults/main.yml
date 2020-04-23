@@ -1,0 +1,7 @@
+---
+target: unamed
+target_groups: undefined
+# /usr/bin/false
+target_shell: /bin/bash
+pub_key: undefined
+password: undefined

@@ -4,11 +4,11 @@
   remote_user: root
   vars:
     target: root
-    pub_key: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+    pub_key_file: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
   tasks:
     - name: Set authorized key taken from file
       authorized_key:
         user:       "{{ target }}"
         state:      present
         exclusive:  yes
-        key:        "{{ lookup('file', '{{ pub_key }}') }}"
+        key:        "{{ lookup('file', '{{ pub_key_file }}') }}"

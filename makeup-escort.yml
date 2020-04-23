@@ -1,0 +1,6 @@
+---
+- name: Update escort servers
+  hosts: escort
+  remote_user: root
+  vars:
+  roles:

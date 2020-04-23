@@ -1,0 +1,44 @@
+---
+- name: Update hostname in hosts
+  replace:
+    path: /etc/hosts
+    regexp: '{{ ansible_hostname }}'
+    replace: '{{ hostname }}'
+
+- name: Set host name
+  hostname:
+    name: "{{ hostname }}"
+
+- name: Change apt source
+  shell: |
+    sed -i "s@deb.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list
+  args:
+    chdir: "~/"
+
+- name: Install foundation apps from apt
+  apt:
+    name:
+      - git
+      - tree
+      - fish
+    state:  present
+    update_cache: yes
+- name: Install apps from apt
+  apt:
+    name:   "{{ apt.install }}"
+    state:  present
+    update_cache: yes
+- name: Apt upgrade
+  apt:
+    upgrade: yes
+- name: Apt autoremove
+  apt:
+    autoremove: yes
+- name: Apt autoclean
+  apt:
+    autoclean: yes
+
+- name: "Set group wheel"
+  group:
+    name:       wheel
+    state:      present

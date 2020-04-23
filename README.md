@@ -12,7 +12,7 @@ apt install -y ansible git fish sshpass
 chsh $USER -s /usr/bin/fish
 ```
 
-**去掉 know host 检测**
+**去掉 know_hosts 检测**
 
 ```sh
 sed -i "s@#host_key_checking = False@host_key_checking = False@g" /etc/ansible/ansible.cfg
@@ -31,6 +31,8 @@ curl -sfL https://gitee.com/veeshan/ashe/raw/master/uninstall.fish | fish
 ```
 
 ## Usage
+
+> 操作所在机器必须先`ssh-keygen`生成密钥用于下发。
 
 ### Update ashe
 

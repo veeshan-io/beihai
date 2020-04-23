@@ -1,37 +1,52 @@
 ---
+- include: base-settings.yml
+  tags: base-settings
+- include: setup-docker.yml
+  tags: setup-docker
 
-- name: Update hostname in hosts
-  replace:
-    path: /etc/hosts
-    regexp: '{{ ansible_hostname }}'
-    replace: '{{ hostname }}'
 
-- name: Set host name
-  hostname:
-    name: "{{ hostname }}"
+## Install `docker` and `docker-compose`
 
-- name: Change apt source
-  shell: |
-    sed -i "s@deb.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list
-  args:
-    chdir: "~/"
+```sh
+setup-docker
+```
 
-- name: Install apps from apt
-  apt:
-    name:   "{{ apt.install }}"
-    state:  present
-    update_cache: yes
-- name: Apt upgrade
-  apt:
-    upgrade: yes
-- name: Apt autoremove
-  apt:
-    autoremove: yes
-- name: Apt autoclean
-  apt:
-    autoclean: yes
+ashe user init
 
-- name: "Set group wheel"
-  group:
-    name:       wheel
-    state:      present
+
+## Create `ashe`
+
+```sh
+sudo useradd -m ashe
+sudo chsh ashe -s /usr/bin/fish
+sudo usermod -a -G docker ashe
+```
+
+**以下切换到ashe执行**
+
+### Create SSH-Key
+
+```sh
+ssh-keygen # 一路回车
+```
+
+### Install `omf`
+
+```sh
+curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fish
+```
+
+## Mount data disk
+
+如果有数据盘，则挂载到/opt下的某个目录下
+
+### 未初始化磁盘先如下操作
+
+[磁盘挂载后初始化](https://support.huaweicloud.com/qs-evs/evs_01_0034.html)
+
+### 初始化好的磁盘
+
+1. 通过`sudo lsblk`确定设备名，例如`vdb1`
+1. 通过`koi mount-disk <dev> <target> <user`进行永久挂载
+
+> Example: `koi mount-disk vdb1 /opt/data01 ashe`

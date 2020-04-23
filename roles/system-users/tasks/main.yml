@@ -1,0 +1,59 @@
+---
+- name: "Init user [ {{ target }} ]"
+  user:
+    # uid:      1045
+    user:     "{{ target }}"
+    shell:    "/usr/bin/fish"
+    state:    present
+    generate_ssh_key:  yes
+
+- name: "Set user [ {{ target }} ] password"
+  user:
+    user:     "{{ target }}"
+    password: "{{ target_password }}"
+  when: password != "undefined"
+
+- name: "Set user [ {{ target }} ] group"
+  user:
+    user:     "{{ target }}"
+    groups:   "{{ target_groups }}"
+  when: target_groups != "undefined"
+
+- name: Add authorized key for user [ {{ target }} ]
+  authorized_key:
+    user:       "{{ target }}"
+    state:      present
+    key:        "{{ pub_key }}"
+  when: pub_key != "undefined"
+
+### 设置`sudo`及免密权限
+
+```sh
+echo 'andares ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/andares
+```
+
+以下是一些基本调整
+
+```sh
+git config --global http.postBuffer 524288000
+git config --global user.name andares
+git config --global user.email your@email.com
+```
+
+#### 安装`omf`和`Fisher`
+
+*Fisher可视情况安装*
+
+```sh
+curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fish
+#curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+```
+
+> 启用个人batman theme执行`omf install https://github.com/andares/batman.git;omf theme batman`
+
+
+### Install `koi` and `RedKoi`
+
+```sh
+omf install https://github.com/andares/redkoi
+```

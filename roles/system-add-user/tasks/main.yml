@@ -1,7 +1,0 @@
----
-- name: "Set user [ {{ target }} ]"
-  user:
-    user: "{{ target }}"
-    groups: "{{ user_groups }}"
-    shell: "{{ user_shell }}"
-    generate_ssh_key:  yes

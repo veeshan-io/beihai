@@ -1,0 +1,37 @@
+---
+# play-book user-set inv-main/inventories/development/hosts.inv -e target=newuser
+- name: Set user
+  hosts: all
+  remote_user: root
+  vars:
+    target_shell:     /usr/bash
+    target_password:  undefined
+    target_groups:    undefined
+    pub_key:          undefined
+  tasks:
+    - name: "Init user [ {{ target }} ]"
+      user:
+        # uid:      1045
+        user:     "{{ target }}"
+        shell:    "{{ target_shell }}"
+        state:    present
+        generate_ssh_key:  yes
+
+    - name: "Set user [ {{ target }} ] password"
+      user:
+        user:     "{{ target }}"
+        password: "{{ target_password }}"
+      when: password != "undefined"
+
+    - name: "Set user [ {{ target }} ] group"
+      user:
+        user:     "{{ target }}"
+        groups:   "{{ target_groups }}"
+      when: target_groups != "undefined"
+
+    - name: Add authorized key for user [ {{ target }} ]
+      authorized_key:
+        user:       "{{ target }}"
+        state:      present
+        key:        "{{ pub_key }}"
+      when: pub_key != "undefined"
