@@ -7,7 +7,6 @@
     owner:  ashe
     group:  ashe
   loop: "{{ mounts }}"
-  when: mounts
 
 - name: "Mount disk"
   mount:
@@ -16,4 +15,3 @@
     fstype: "{{ item.fstype }}"
     state:  present
   loop: "{{ mounts }}"
-  when: mounts
