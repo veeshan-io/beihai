@@ -1,4 +1,6 @@
 ---
+- debug:
+    var:  mounts
 - name: Prepare mount dirs
   file:
     path:   "{{ item.dir }}"
@@ -6,7 +8,7 @@
     mode:   '0755'
     owner:  ashe
     group:  ashe
-  with_items: "{{ mounts }}"
+  loop: "{{ mounts }}"
 
 - name: "Mount disk"
   mount:
@@ -14,4 +16,4 @@
     src:    "{{ item.dev }}"
     fstype: "{{ item.fstype }}"
     state:  present
-  with_items: "{{ mounts }}"
+  loop: "{{ mounts }}"
