@@ -15,3 +15,7 @@
     fstype: "{{ item.fstype }}"
     state:  present
   loop: "{{ mounts }}"
+
+- name: Change apt source
+  shell: |
+    mount -a
