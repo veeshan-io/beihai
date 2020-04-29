@@ -12,36 +12,34 @@
     url: https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian/gpg
     state: present
 
-- name: Change apt source
-  shell: |
-    sed -i "s@deb.debian.org@{{ apt.repos }}@g"  /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt.repos }}@g" /etc/apt/sources.list
-  args:
-    chdir: "~/"
+- name: Set apt repository
+- apt_repository:
+    repo: "deb [arch=amd64] https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian {{ ansible_distribution_release }} stable"
+    state: present
 
-- name: Install foundation apps from apt
+- name: Install docker-ce
   apt:
     name:
-      - git
-      - tree
-      - fish
+      - docker-ce
     state:  present
     update_cache: yes
-- name: Install apps from apt
-  apt:
-    name:   "{{ apt.install }}"
-    state:  present
-    update_cache: yes
-- name: Apt upgrade
-  apt:
-    upgrade: yes
-- name: Apt autoremove
-  apt:
-    autoremove: yes
-- name: Apt autoclean
-  apt:
-    autoclean: yes
 
-- name: "Set group wheel"
-  group:
-    name:       wheel
-    state:      present
+- name: Prepare docker config dir
+  file:
+    path:   /etc/docker
+    state:  directory
+    mode:   '0755'
+
+- name: Set docker deamon config
+  template:
+    src: docker/daemon.json
+    dest: /etc/docker/daemon.json
+  notify:
+    - reload daemon
+    - restart docker
+
+- name: Install docker-compose
+  get_url:
+    url: https://plane.cn-sh2.ufileos.com/softwares%2Fdocker-compose-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: '755'

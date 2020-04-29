@@ -1,0 +1,13 @@
+---
+- name: reload daemon
+  shell: |
+    systemctl daemon-reload
+
+- name: restart docker
+  shell: |
+    systemctl restart docker
+
+# - name: restart docker
+#   service:
+#     name:   docker
+#     state:  restarted
