@@ -13,7 +13,7 @@
     state: present
 
 - name: Set apt repository
-- apt_repository:
+  apt_repository:
     repo: "deb [arch=amd64] https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian {{ ansible_distribution_release }} stable"
     state: present
 
