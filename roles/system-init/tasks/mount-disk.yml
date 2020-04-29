@@ -16,6 +16,6 @@
     state:  present
   loop: "{{ mounts }}"
 
-- name: Change apt source
+- name: Remount all
   shell: |
     mount -a

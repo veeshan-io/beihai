@@ -3,4 +3,4 @@
   hosts: node
   remote_user: root
   vars:
-  roles:
+  roles:  []

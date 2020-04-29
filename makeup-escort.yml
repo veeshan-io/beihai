@@ -3,4 +3,4 @@
   hosts: escort
   remote_user: root
   vars:
-  roles:
+  roles:  []
