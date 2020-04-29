@@ -23,17 +23,21 @@
       - fish
     state:  present
     update_cache: yes
+
 - name: Install apps from apt
   apt:
     name:   "{{ apt.install }}"
     state:  present
     update_cache: yes
+
 - name: Apt upgrade
   apt:
     upgrade: yes
+
 - name: Apt autoremove
   apt:
     autoremove: yes
+
 - name: Apt autoclean
   apt:
     autoclean: yes

@@ -1,0 +1,13 @@
+---
+- name: "Init user ashe"
+  user:
+    # uid:      1045
+    user:     "ashe"
+    shell:    "/usr/bin/fish"
+    state:    present
+    generate_ssh_key:  yes
+
+- name: "Set user ashe group"
+  user:
+    user:     "ashe"
+    groups:   "wheel"

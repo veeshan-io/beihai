@@ -3,4 +3,7 @@
   tags: base-settings
 - include: setup-docker.yml
   tags: setup-docker
-
+- include: setup-ashe.yml
+  tags: setup-ashe
+- include: mount-disk.yml
+  tags: mount-disk

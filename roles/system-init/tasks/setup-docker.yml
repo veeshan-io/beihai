@@ -1,11 +1,12 @@
 ---
-- name: Remove old version
-  apt:
-    name:
-      - docker
-      - docker-engine
-      - docker.io
-    state:  absent
+# 不适合在 ansible 部署方案中移除旧版
+# - name: Remove old version
+#   apt:
+#     name:
+#       - docker
+#       - docker-engine
+#       - docker.io
+#     state:  absent
 
 - name: Add tsinghua gpg-key
   apt_key:
