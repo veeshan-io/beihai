@@ -7,6 +7,6 @@
     - name: Init system
       role: system-init
       # vars:
-    # - name: Init users
-      # role: system-users
+    - name: Init users
+      role: system-users
       # vars:

@@ -1,4 +1,11 @@
 ---
+users: []
+  - name:
+    pass:
+    groups:
+    pubkey:
+    sudo:   no
+
 target: unamed
 target_groups: undefined
 # /usr/bin/false
