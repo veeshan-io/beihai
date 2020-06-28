@@ -3,7 +3,7 @@
 <!-- ![logo](_media/beihai.svg) -->
 <!-- <img src="_media/beihai.svg" width = "30%" height = "30%" alt="logo" align=center /> -->
 
-# Beihai Arch <small>Alpha</small>
+# Beihai<small>T2 Arch</small>
 
 > Ops in your pocket.
 
@@ -14,7 +14,7 @@
 -
 
 <!-- [GitHub](https://github.com/veeshan-io) -->
-[Get Started](#Beihai-Arch)
+[Get Started](#Beihai)
 
 <!-- It's not work.. -->
 
