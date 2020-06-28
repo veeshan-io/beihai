@@ -6,9 +6,8 @@
 # * $dependencies  package dependencies
 
 # Set vas
-set -x bh_root (dirname (status -f))
-echo $bh_root
-set -x bh_book_path $bh_root/books
+set -xg bh_root (dirname (status -f))
+set -xg bh_book_path $bh_root/books
 
 # function ___show-book -a path
 #   for name in (string split ' ' (string replace -a '.yml' '' (echo $path/*.yml)))
