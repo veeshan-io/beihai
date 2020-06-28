@@ -1,4 +1,4 @@
-# 个人安装不纳入ashe标准流程中的组件
+# 个人安装不纳入grace标准流程中的组件
 
 ## Install SpaceVim
 
@@ -136,15 +136,15 @@ omf install https://github.com/andares/redkoi
 setup-docker
 ```
 
-## Create `ashe`
+## Create `grace`
 
 ```sh
-sudo useradd -m ashe
-sudo chsh ashe -s /usr/bin/fish
-sudo usermod -a -G docker ashe
+sudo useradd -m grace
+sudo chsh grace -s /usr/bin/fish
+sudo usermod -a -G docker grace
 ```
 
-**以下切换到ashe执行**
+**以下切换到grace执行**
 
 ### Create SSH-Key
 
@@ -171,7 +171,7 @@ curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fis
 1. 通过`sudo lsblk`确定设备名，例如`vdb1`
 1. 通过`koi mount-disk <dev> <target> <user`进行永久挂载
 
-> Example: `koi mount-disk vdb1 /opt/data01 ashe`
+> Example: `koi mount-disk vdb1 /opt/data01 grace`
 
 **以下回到个人用户执行**
 
@@ -181,18 +181,18 @@ curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fis
 > 需要先放通`> TCP:25432`
 
 ```sh
-setup-postgres /opt/data01/postgres-12 brillia ashe
-sudo su -c "cd /opt/data01/postgres-12;docker-compose up -d" -s /usr/bin/fish ashe
+setup-postgres /opt/data01/postgres-12 brillia grace
+sudo su -c "cd /opt/data01/postgres-12;docker-compose up -d" -s /usr/bin/fish grace
 ```
 
-> sudo su -c "cd /opt/data01/postgres-12;docker-compose kill" -s /usr/bin/fish ashe
+> sudo su -c "cd /opt/data01/postgres-12;docker-compose kill" -s /usr/bin/fish grace
 
 ## Install `K3s`
 
 ```sh
 setup-k3s cn
-sudo cp -f /etc/rancher/k3s/k3s.yaml /home/ashe/.kube/config
-sudo chown ashe:ashe /home/ashe/.kube/config
+sudo cp -f /etc/rancher/k3s/k3s.yaml /home/grace/.kube/config
+sudo chown grace:grace /home/grace/.kube/config
 ```
 
 看看要不要加kuboard
@@ -211,7 +211,7 @@ setup-helm https://plane.cn-sh2.ufileos.com/softwares%2Fhelm-v3.1.2-linux-amd64.
 
 ## Install `ansible` and `AWX`
 
-## Create cluster for `ashe`
+## Create cluster for `grace`
 
 
 ## 可选项
@@ -224,9 +224,9 @@ setup-helm https://plane.cn-sh2.ufileos.com/softwares%2Fhelm-v3.1.2-linux-amd64.
 > 假设上传证书到`~/tmp/cert`目录下并设置权限`chmod 640 ~/tmp/cert/*`
 
 ```sh
-setup-rancher /opt/data01/rancher 9080 9443 ~/tmp/cert ashe
-sudo su -c "cd /opt/data01/rancher;docker-compose up -d" -s /usr/bin/fish ashe
+setup-rancher /opt/data01/rancher 9080 9443 ~/tmp/cert grace
+sudo su -c "cd /opt/data01/rancher;docker-compose up -d" -s /usr/bin/fish grace
 ```
 
-> sudo su -c "cd /opt/data01/rancher;docker-compose kill" -s /usr/bin/fish ashe
-> sudo su -c "cd /opt/data01/rancher;docker-compose rm" -s /usr/bin/fish ashe
+> sudo su -c "cd /opt/data01/rancher;docker-compose kill" -s /usr/bin/fish grace
+> sudo su -c "cd /opt/data01/rancher;docker-compose rm" -s /usr/bin/fish grace

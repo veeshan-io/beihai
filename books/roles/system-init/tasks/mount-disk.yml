@@ -4,8 +4,8 @@
     path:   "{{ item.dir }}"
     state:  directory
     mode:   '0755'
-    owner:  ashe
-    group:  ashe
+    owner:  grace
+    group:  grace
   loop: "{{ mounts }}"
 
 - name: "Mount disk"

@@ -1,13 +1,13 @@
 ---
-- name: "Init user ashe"
+- name: "Init user grace"
   user:
     # uid:      1045
-    user:     "ashe"
+    user:     "grace"
     shell:    "/usr/bin/fish"
     state:    present
     generate_ssh_key:  yes
 
-- name: "Set user ashe group"
+- name: "Set user grace group"
   user:
-    user:     "ashe"
+    user:     "grace"
     groups:   "wheel"
