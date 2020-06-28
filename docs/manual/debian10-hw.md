@@ -107,7 +107,7 @@ git config --global user.email your@email.com
 ### 构建密钥
 
 ```sh
-ssh-keygen # 一路回车
+ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa
 ```
 
 #### 安装`omf`和`Fisher`

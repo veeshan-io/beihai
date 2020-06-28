@@ -7,6 +7,7 @@
 
 # Set vas
 set -x bh_root (dirname (status -f))
+echo $bh_root
 set -x bh_book_path $bh_root/books
 
 # function ___show-book -a path
