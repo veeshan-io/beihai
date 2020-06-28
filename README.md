@@ -33,8 +33,12 @@ curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fis
 # curl -L https://get.oh-my.fish | fish
 ```
 
+### 安装 Beihai
+
+> 如果这里定义了自己的扩展方案并且使用了`omf`的bundle依赖，可以直接安装自己的扩展。
+
 ```sh
-curl -sfL https://gitee.com/veeshan/beihai/raw/master/install.fish | fish
+omf install https://gitee.com/veeshan/beihai.git
 ```
 
 ## Plane install
