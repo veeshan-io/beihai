@@ -7,3 +7,8 @@
 # feel free to remove completions directory from the project.
 
 # complete -c play -a "(___show-book $HOME/.local/share/ashe)"
+
+complete -c beihai -f
+for subcommand in (_beihai.command)
+  complete -c beihai -f -a $subcommand -n "__fish_use_subcommand"
+end
