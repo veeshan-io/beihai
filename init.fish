@@ -8,6 +8,7 @@
 # Set vas
 set -xg bh_root (dirname (status -f))
 set -xg bh_book_path $bh_root/books
+set -xg bh_inv_path $bh_root/books/inventories
 
 # function ___show-book -a path
 #   for name in (string split ' ' (string replace -a '.yml' '' (echo $path/*.yml)))
