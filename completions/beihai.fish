@@ -8,7 +8,8 @@
 
 # complete -c play -a "(___show-book $HOME/.local/share/ashe)"
 
-complete -c beihai -f
-for subcommand in (_beihai.command)
-  complete -c beihai -f -a $subcommand -n "__fish_use_subcommand"
-end
+complete -c beihai -x -a (_beihai.command) -n "__fish_use_subcommand"
+
+# for book in (_beihai.books)
+#   complete -c beihai -x -a $book -d
+# end
