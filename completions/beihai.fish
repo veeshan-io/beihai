@@ -8,8 +8,12 @@
 
 # complete -c play -a "(___show-book $HOME/.local/share/ashe)"
 
-complete -c beihai -x -a (_beihai.command) -n "__fish_use_subcommand"
+complete -c beihai -x -d "Command" -a (_beihai.command) -n "__fish_use_subcommand"
 
-# for book in (_beihai.books)
-#   complete -c beihai -x -a $book -d
+# complete -c play -e
+# complete -c play -n "__koi_no_subcommand_from (_beihai.invs)" -x -d "Inventory" -a (_beihai.invs)
+# complete -c play -n "__fish_seen_subcommand_from (_beihai.invs)" -x -d "Book" -a (_beihai.books)
+
+# for inventory in (_beihai.invs)
+#   complete -c play -c $inventory -x -d "Book" -a (_beihai.books)
 # end
