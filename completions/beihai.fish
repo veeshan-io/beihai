@@ -10,10 +10,6 @@
 
 complete -c beihai -x -d "Command" -a (_beihai.command) -n "__fish_use_subcommand"
 
-# complete -c play -e
-# complete -c play -n "__koi_no_subcommand_from (_beihai.invs)" -x -d "Inventory" -a (_beihai.invs)
-# complete -c play -n "__fish_seen_subcommand_from (_beihai.invs)" -x -d "Book" -a (_beihai.books)
-
-# for inventory in (_beihai.invs)
-#   complete -c play -c $inventory -x -d "Book" -a (_beihai.books)
-# end
+set -l invs (_beihai.invs)
+complete -c play -n "__koi_no_subcommand_from $invs" -x -d "Inventory" -a $invs
+complete -c play -n "__fish_seen_subcommand_from $invs" -x -d "Book" -a (_beihai.books)
