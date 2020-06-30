@@ -12,6 +12,7 @@ set -xg bh_inv_path $bh_root/books/inventories
 
 # Autoload
 autoload $path/functions/beihai
+autoload $path/completions # 这里好像居然是懒加载？
 
 # function ___show-book -a path
 #   for name in (string split ' ' (string replace -a '.yml' '' (echo $path/*.yml)))

@@ -6,8 +6,6 @@
 # If your package doesn't provide any command line utility,
 # feel free to remove completions directory from the project.
 
-# complete -c play -a "(___show-book $HOME/.local/share/ashe)"
-
 complete -c beihai -x -d "Command" -a (_beihai.command) -n "__fish_use_subcommand"
 
 set -l invs (_beihai.invs)
