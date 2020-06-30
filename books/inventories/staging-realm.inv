@@ -1,7 +1,6 @@
 # [all:vars]
 
 [plane]
-borne.plane   hostname=host-plane-borne
 
 [plane:vars]
 

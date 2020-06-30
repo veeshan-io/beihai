@@ -1,5 +1,5 @@
 ---
-- name: Init root ssh key
+- name: Issue ssh key
   hosts: all
   remote_user: root
   vars:
