@@ -55,4 +55,3 @@ Borne原则上只支持对本机进行部署，执行：
 play local make-borne
 ```
 
-相关的配置文件参照
