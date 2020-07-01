@@ -1,21 +1,32 @@
 function play -d "Play Beihai book"
+
   set -l inventory $argv[1]
-  set -l books $argv[2..-1]
-  echo $inventory
-  echo $books
+
+  set -l books
+  set -l extra
+  set -l is_extra 0
+  for param in $argv[2..-1]
+    if test "$param" = "--"
+      set is_extra 1
+      continue
+    end
+
+    if test $is_extra -eq 1
+      set extra $extra $param
+    else
+      set books $books $param
+    end
+  end
 
   if test -z "$inventory"; or test -z "$books"
-    echo Usage: play \<inventory\>[ \<...extra\>]
-    echo - Books:
-    ___show-book $__DIR
+    echo Usage: play \<inventory\> \<...books\> [-- \<...extra\>]
     return $OMF_UNKNOWN_OPT
   end
 
-  # set book $__DIR/$book.yml
-  # if not test -f $book
-  #   echo The book [ $book ] is not exists.
-  #   return $OMF_UNKNOWN_OPT
-  # end
-
-  # ansible-playbook -i $inventory $book $argv[4..-1]
+  for book in $books
+    if not test -z "$DEBUG"
+      echo RUN: ansible-playbook -i (beihai invs $inventory) (beihai books $book) $extra
+    end
+    ansible-playbook -i (beihai invs $inventory) (beihai books $book) $extra
+  end
 end
