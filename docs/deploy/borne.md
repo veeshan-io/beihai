@@ -64,7 +64,8 @@ koi name-localhost <host-name>
 
 
 ```toml
-<host-name>     ansible_connection=local
+[borne]
+preface         ansible_connection=local
 ```
 
 可在`host_vars`中对该主机名中的参数进行配置。
