@@ -47,7 +47,11 @@ omf install https://yourgit.com/yourproject/opsconf.git
 
 > 关于如何创建 ops 库及其样版之后再做补充
 
-## 使用 Ansible 部署本机
+## 部署本机
+
+### 使用 koi 指令设置本机主机名
+
+### 使用 Ansible 部署本机
 
 Borne原则上只支持对本机进行部署，执行：
 
@@ -55,3 +59,12 @@ Borne原则上只支持对本机进行部署，执行：
 play local make-borne
 ```
 
+### 创建本机密钥
+
+```sh
+ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa
+```
+
+### 下发密钥
+
+## 完成部署
