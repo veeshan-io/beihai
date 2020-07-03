@@ -1,10 +1,12 @@
 ---
-users: []
+users:  []
   - name:
     pass:
     groups:
     pubkey:
     sudo:   no
+
+bans:   []
 
 target: unamed
 target_groups: undefined

@@ -1,6 +1,8 @@
 ---
-apt:
-  repos:
-  install:  []
+apt_repos:    ""
+apt_install:  []
 
 mounts: []
+  # - dir:    /opt/data01
+    # dev:    /dev/vdb1
+    # fstype: ext4

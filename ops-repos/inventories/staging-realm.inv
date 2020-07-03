@@ -1,13 +1,9 @@
-# [all:vars]
-
 [plane]
+host-plane
 
 [plane:vars]
 
 [escort]
+host-plane
 
 [escort:vars]
-
-[node]
-
-[node:vars]

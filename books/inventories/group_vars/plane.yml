@@ -1,5 +1,0 @@
----
-apt:
-  repos:  repo.huaweicloud.com
-  install:
-    - php-cli

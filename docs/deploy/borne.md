@@ -51,21 +51,23 @@ omf install https://yourgit.com/yourproject/opsconf.git
 
 ## 部署本机
 
+部署本机需要先给本机定义一个名称即`<host-name>`。这里假设为`borne 0号机`，命名为`zero`
+
 ### 使用 koi 指令设置本机主机名
 
 ```sh
-koi register-host <host-name> 127.0.0.1
-koi name-localhost <host-name>
+koi register-host <zero> 127.0.0.1
+koi name-localhost <zero>
 ```
 
 ### 使用 Ansible 部署本机
 
-需要在`ops-repos`中设置与hostname一致的borne inv，命名为`borne-<host-name>`，其内容为：
+需要在`ops-repos`中设置与hostname一致的borne inv，命名为`borne-zero.inv`，其内容为：
 
 
 ```toml
 [borne]
-preface         ansible_connection=local
+zero          ansible_connection=local
 ```
 
 可在`host_vars`中对该主机名中的参数进行配置。
@@ -82,6 +84,14 @@ borne
 ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa
 ```
 
+## 部署远程
+
+### ping 一下
+
 ### 下发密钥
+
+### 创建 plane 和 escort
+
+## 远程部署 Borne
 
 ## 完成部署

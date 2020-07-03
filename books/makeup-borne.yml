@@ -3,6 +3,8 @@
   hosts: borne
   remote_user: root
   vars:
+    apt_install:
+      - ansible
   roles:
     - role: network-init
     - role: borne-init

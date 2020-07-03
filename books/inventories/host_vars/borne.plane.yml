@@ -1,9 +1,0 @@
----
-mounts: []
-  # - dir:    /opt/data01
-    # dev:    /dev/vdb1
-    # fstype: ext4
-users:  []
-  # - target:
-bans:   []
-  # - target:

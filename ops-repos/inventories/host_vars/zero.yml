@@ -1,0 +1,4 @@
+---
+remote_hosts:
+  - ip:   '10.0.0.1'
+    name: 'host-plane'

@@ -10,4 +10,4 @@
 - name: "Set user grace group"
   user:
     user:     "grace"
-    groups:   "wheel"
+    groups:   "grace"

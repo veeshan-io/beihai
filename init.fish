@@ -5,7 +5,7 @@
 # * $path          package path
 # * $dependencies  package dependencies
 
-# Set vas
+# Set vars
 set -xg bh_root (dirname (status -f))
 set -xg bh_book_path $bh_root/books
 set -xg bh_inv_path $bh_root/books/inventories

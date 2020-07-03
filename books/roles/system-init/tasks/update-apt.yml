@@ -1,0 +1,36 @@
+---
+
+- name: Change apt source
+  shell: |
+    sed -i "s@deb.debian.org@{{ apt_repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt_repos }}@g" /etc/apt/sources.list
+  args:
+    chdir: "~/"
+  when: "{{ apt_repos }}"
+
+- name: Install foundation apps from apt
+  apt:
+    name:
+      - git
+      - tree
+      - fish
+      - sshpass
+    state:  present
+    update_cache: yes
+
+- name: Install apps from apt
+  apt:
+    name:   "{{ apt_install }}"
+    state:  present
+    update_cache: yes
+
+- name: Apt upgrade
+  apt:
+    upgrade: yes
+
+- name: Apt autoremove
+  apt:
+    autoremove: yes
+
+- name: Apt autoclean
+  apt:
+    autoclean: yes
