@@ -1,7 +1,7 @@
 ---
 - name: Setup hosts file
   template:
-    src: hosts.j2
+    src: etc/hosts.j2
     dest: /etc/hosts
     owner: root
     group: root
