@@ -1,0 +1,3 @@
+---
+- include: setup-k3s.yml
+  tags: setup-k3s

@@ -37,7 +37,7 @@ omf install https://github.com/veeshan-io/beihai.git
 
 ## 基于自己的 ops-repos 安装 Beihai
 
-这里定义了一个概念叫`ops-repos`，每个项目需要有自己的ops专用仓库来与`beihai`结合实现部署。
+这里定义了一个概念`ops-repos`，每个项目需要有自己的ops专用仓库来与`beihai`结合实现部署。
 
 在实际操作中需要创建自己的部署配置文件，这一般作为ops配置托管在一个独立的git仓库中。最佳实践方案是将此ops配置也做成一个omf插件，在项目根下添加文件`bundle`给出内容`package https://github.com/veeshan-io/beihai.git`
 
