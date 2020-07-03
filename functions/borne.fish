@@ -1,4 +1,4 @@
-function play -d "Init borne local"
+function borne -d "Init borne local"
   set -l name (hostname)
   set -l inv (beihai bornes $name)
   if test -z "$inv"
