@@ -24,9 +24,7 @@ function play -d "Play Beihai book"
   end
 
   for book in $books
-    if not test -z "$DEBUG"
-      echo RUN: ansible-playbook -i (beihai invs $inventory) (beihai books $book) $extra
-    end
+    koi debug "RUN: ansible-playbook -i "(beihai invs $inventory)" "(beihai books $book)" $extra"
     ansible-playbook -i (beihai invs $inventory) (beihai books $book) $extra
   end
 end

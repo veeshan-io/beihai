@@ -1,4 +1,11 @@
 function play -d "Init borne local"
   set -l name (hostname)
-  beihai
+  set -l inv (beihai bornes $name)
+  if test -z "$inv"
+    echo Inventory for borne $inv is not exists.
+    return $OMF_UNKNOWN_OPT
+  end
+
+  koi debug "RUN: ansible-playbook -i $inv "(beihai books makeup-borne)
+  ansible-playbook -i $inv (beihai books makeup-borne)
 end
