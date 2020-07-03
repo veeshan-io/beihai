@@ -1,6 +1,8 @@
 ---
-- name: Update node servers
-  hosts: node
+- name: Makeup borne server
+  hosts: borne
   remote_user: root
   vars:
-  roles:  []
+  roles:
+    - name: Borne init
+      role: borne-init
