@@ -4,9 +4,7 @@
   remote_user: root
   vars:
   roles:
-    - name: Install local postgres
-      role: dev-postgres
+    - role: dev-postgres
       # vars:
-    - name: Install k3s
-      role: dev-k3s
+    - role: dev-k3s
       # vars:

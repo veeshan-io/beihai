@@ -4,7 +4,5 @@
   remote_user: root
   vars:
   roles:
-    - name: Network init
-      role: network-init
-    - name: Borne init
-      role: borne-init
+    - role: network-init
+    - role: borne-init
