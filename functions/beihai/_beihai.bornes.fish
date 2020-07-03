@@ -21,5 +21,7 @@ function _beihai.bornes -a name -d "Show Beihai bornes"
     end
   end
 
-  echo $items
+  if test -z "$name"
+    echo $items
+  end
 end

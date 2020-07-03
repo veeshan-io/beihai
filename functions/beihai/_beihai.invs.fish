@@ -19,5 +19,7 @@ function _beihai.invs -a name -d "Show Beihai inventories"
     end
   end
 
-  echo $items
+  if test -z "$name"
+    echo $items
+  end
 end

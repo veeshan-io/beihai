@@ -12,5 +12,7 @@ function _beihai.books -a name -d "Show Beihai books"
     end
   end
 
-  echo $items
+  if test -z "$name"
+    echo $items
+  end
 end
