@@ -1,7 +1,6 @@
 ---
 - name: "Init user [ {{ item.name }} ]"
   user:
-    # uid:      1045
     user:     "{{ item.name }}"
     shell:    "{{ item.shell | default('/usr/bin/fish') }}"
     state:    present
@@ -35,3 +34,9 @@
     echo '{{ item.name }} ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/{{ item.name }}
   when: item.sudo = "yes"
   loop: "{{ users }}"
+
+- name: Ban user
+  user:
+    user:     "{{ item.name }}"
+    state:    absent
+  loop: "{{ bans }}"

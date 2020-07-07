@@ -5,6 +5,5 @@
   vars:
   roles:
     - role: system-init
-      # vars:
+    - role: network-init
     - role: system-users
-      # vars:

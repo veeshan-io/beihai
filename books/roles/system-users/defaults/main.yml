@@ -1,22 +1,13 @@
 ---
+# suggest for HOST VARS
 users:  []
-  - name:
-    pass:
-    groups:
-    pubkey:
-    sudo:   no
+  # - name:
+  #   pass:
+  #   groups:
+  #   pubkey:
+  #   sudo:   no
+    # shell:  "/usr/bin/fish"
 
 bans:   []
-
-target: unamed
-target_groups: undefined
-# /usr/bin/false
-target_shell: /bin/bash
-pub_key: undefined
-password: undefined
-
-# 设置有docker操作权限
-# usermod -a -G docker $USER
-
-# 设置有k3s操作权限
-# 复制配置到home
+  # - name:
+  #   remove:   no

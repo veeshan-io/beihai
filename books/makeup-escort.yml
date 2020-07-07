@@ -1,6 +1,10 @@
 ---
+- name: Update servers with common setting
+  import_playbook: makeup-common.yml
+
 - name: Update escort servers
   hosts: escort
   remote_user: root
   vars:
-  roles:  []
+  roles: []
+

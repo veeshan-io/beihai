@@ -64,7 +64,6 @@ koi name-localhost <zero>
 
 需要在`ops-repos`中设置与hostname一致的borne inv，命名为`borne-zero.inv`，其内容为：
 
-
 ```toml
 [borne]
 zero          ansible_connection=local
@@ -86,9 +85,28 @@ ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa
 
 ## 部署远程
 
-### ping 一下
+### 集群安全策略
+
+`beihai`建议的安全方案如下：
+
+- 为集群机创建通用密码以方便部署
+- 为ssh商品设置独立的对外安全组和对内安全组
+- 仅在需要部署的时候开启对外ssh安全组进行部署
+- 部署完后移除对外ssh安全组
+- 内部平时操作采用跳板机实现
+- 当平时不使用时，也可以移除对内ssh安全组，在服务器外利用云服务禁止ssh登录
 
 ### 下发密钥
+
+```sh
+play <your-inv> issue-key -- -k
+```
+
+### ping 一下
+
+```sh
+play <your-inv> ping
+```
 
 ### 创建 plane 和 escort
 

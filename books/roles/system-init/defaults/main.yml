@@ -1,7 +1,9 @@
 ---
+# suggest for GROUP VARS
 apt_repos:    ""
 apt_install:  []
 
+# suggest for HOST VARS
 mounts: []
   # - dir:    /opt/data01
     # dev:    /dev/vdb1

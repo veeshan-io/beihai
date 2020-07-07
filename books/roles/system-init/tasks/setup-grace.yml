@@ -1,7 +1,7 @@
 ---
 - name: "Init user grace"
   user:
-    # uid:      1045
+    uid:      2068
     user:     "grace"
     shell:    "/usr/bin/fish"
     state:    present
