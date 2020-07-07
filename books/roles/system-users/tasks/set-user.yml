@@ -12,14 +12,14 @@
   user:
     user:     "{{ item.name }}"
     password: "{{ item.pass }}"
-  when: item.pass
+  when: item.pass is defined
   loop: "{{ users }}"
 
 - name: "Set user [ {{ item.name }} ] group"
   user:
     user:     "{{ item.name }}"
     groups:   "{{ item.groups }}"
-  when: item.groups
+  when: item.groups is defined
   loop: "{{ users }}"
 
 - name: Add authorized key for user [ {{ item.name }} ]
@@ -27,11 +27,11 @@
     user:       "{{ item.name }}"
     state:      present
     key:        "{{ item.pubkey }}"
-  when: item.pubkey
+  when: item.pubkey is defined
   loop: "{{ users }}"
 
 - name: Set sudo
   shell: |
     echo '{{ item.name }} ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/{{ item.name }}
-  when: item.sudo = "yes"
+  when: item.sudo is defined and item.sudo = "yes"
   loop: "{{ users }}"

@@ -7,4 +7,4 @@
   tags: setup-grace
 - include: mount-disk.yml
   tags: mount-disk
-  when: "{{ mounts }}"
+  when: mounts is defined

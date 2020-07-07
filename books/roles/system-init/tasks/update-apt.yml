@@ -7,7 +7,7 @@
     sed -i "s@deb.debian.org@{{ apt_repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt_repos }}@g" /etc/apt/sources.list
   args:
     chdir: "~/"
-  when: "{{ apt_repos }}"
+  when: apt_repos is defined
 
 - name: Install foundation apps from apt
   apt:
@@ -24,7 +24,7 @@
     name:   "{{ apt_install }}"
     state:  present
     update_cache: yes
-  when: "{{ apt_install }}"
+  when: apt_install is defined
 
 - name: Apt upgrade
   apt:

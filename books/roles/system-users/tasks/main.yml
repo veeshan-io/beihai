@@ -1,37 +1,5 @@
 ---
-- name: "Init user [ {{ item.name }} ]"
-  user:
-    # uid:      1045
-    user:     "{{ item.name }}"
-    shell:    "{{ item.shell | default('/usr/bin/fish') }}"
-    state:    present
-    generate_ssh_key:  yes
-  loop: "{{ users }}"
-
-- name: "Set user [ {{ item.name }} ] password"
-  user:
-    user:     "{{ item.name }}"
-    password: "{{ item.pass }}"
-  when: item.pass
-  loop: "{{ users }}"
-
-- name: "Set user [ {{ item.name }} ] group"
-  user:
-    user:     "{{ item.name }}"
-    groups:   "{{ item.groups }}"
-  when: item.groups
-  loop: "{{ users }}"
-
-- name: Add authorized key for user [ {{ item.name }} ]
-  authorized_key:
-    user:       "{{ item.name }}"
-    state:      present
-    key:        "{{ item.pubkey }}"
-  when: item.pubkey
-  loop: "{{ users }}"
-
-- name: Set sudo
-  shell: |
-    echo '{{ item.name }} ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/{{ item.name }}
-  when: item.sudo = "yes"
-  loop: "{{ users }}"
+- include: set-user.yml
+  tags: set-user
+- include: ban-user.yml
+  tags: ban-user
