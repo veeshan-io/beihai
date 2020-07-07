@@ -110,6 +110,8 @@ play <your-inv> ping
 
 ### 创建 plane 和 escort
 
-## 远程部署 Borne
+## Borne 暂不支持远程部署
+
+> 考虑到一些实现细节问题，暂时不支持`borne`机通过远程部署。
 
 ## 完成部署
