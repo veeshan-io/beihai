@@ -4,6 +4,7 @@
   remote_user: root
   vars:
   roles:
+    - role: system-name
     - role: system-init
     - role: network-init
     - role: system-users

@@ -1,6 +1,6 @@
 ---
-- name: Update servers with common setting
-  import_playbook: makeup-common.yml
+# - name: Update servers with common setting
+#   import_playbook: makeup-common.yml
 
 - name: Update escort servers
   hosts: escort

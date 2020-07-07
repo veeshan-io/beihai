@@ -1,6 +1,6 @@
 ---
-- debug:
-    var:  apt_repos
+# - debug:
+#     var:  apt_repos
 
 - name: Change apt source
   shell: |
