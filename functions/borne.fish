@@ -6,6 +6,6 @@ function borne -d "Init borne local"
     return $OMF_UNKNOWN_OPT
   end
 
-  koi debug "RUN: ansible-playbook -i $inv "(beihai books makeup-borne)
-  ansible-playbook -i $inv (beihai books makeup-borne)
+  koi debug "RUN: ansible-playbook -i $inv "(beihai books borne)
+  ansible-playbook -i $inv (beihai books borne)
 end
