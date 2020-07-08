@@ -1,4 +1,4 @@
-function _beihai.clean -d "Clean Beihai directory"
+function _beihai.renew -d "Renew beihai & ops-repos"
   if test (count $ops_repos_path) = 1
     koi renew-repos $ops_repos_path
   else
