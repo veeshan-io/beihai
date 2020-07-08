@@ -41,7 +41,7 @@
 - name: Set sudo
   shell: |
     echo '{{ item.name }} ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/{{ item.name }}
-  when: item.sudo is defined and item.sudo == yes
+  when: item.sudo is defined and item.sudo
   loop: "{{ users }}"
   loop_control:
     label: "{{ item.name }}"
