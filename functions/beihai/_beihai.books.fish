@@ -8,7 +8,9 @@ function _beihai.books -a name -d "Show Beihai books"
         return 0
       end
 
-      set items $items $item
+      if test $item != "borne"
+        set items $items $item
+      end
     end
   end
 
