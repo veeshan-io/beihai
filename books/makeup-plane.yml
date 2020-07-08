@@ -6,8 +6,8 @@
   hosts: plane
   remote_user: root
   vars:
-  roles:
-    - role: dev-postgres
+  roles: []
+    # - role: dev-postgres
       # vars:
-    - role: dev-k3s
+    # - role: dev-k3s
       # vars:
