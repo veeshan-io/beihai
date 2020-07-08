@@ -56,8 +56,8 @@ omf install https://yourgit.com/yourproject/opsconf.git
 ### 使用 koi 指令设置本机主机名
 
 ```sh
-koi register-host <zero> 127.0.0.1
-koi name-localhost <zero>
+koi register-host zero 127.0.0.1
+koi name-localhost zero
 ```
 
 ### 使用 Ansible 部署本机
