@@ -16,6 +16,7 @@
       - tree
       - fish
       - sshpass
+      - sudo
     state:  present
     update_cache: yes
 
