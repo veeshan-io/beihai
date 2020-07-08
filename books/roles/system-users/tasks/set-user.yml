@@ -7,6 +7,8 @@
     state:    present
     generate_ssh_key:  yes
   loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: "Set users password"
   user:
@@ -14,6 +16,8 @@
     password: "{{ item.pass }}"
   when: item.pass is defined
   loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: "Set users group"
   user:
@@ -21,6 +25,8 @@
     groups:   "{{ item.groups }}"
   when: item.groups is defined
   loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: Add authorized key for users
   authorized_key:
@@ -29,9 +35,13 @@
     key:        "{{ item.pubkey }}"
   when: item.pubkey is defined
   loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: Set sudo
   shell: |
     echo '{{ item.name }} ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/{{ item.name }}
   when: item.sudo is defined and item.sudo == "yes"
   loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"

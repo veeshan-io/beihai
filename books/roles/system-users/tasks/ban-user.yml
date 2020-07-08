@@ -4,3 +4,5 @@
     user:     "{{ item.name }}"
     state:    absent
   loop: "{{ bans }}"
+  loop_control:
+    label: "{{ item.name }}"

@@ -5,6 +5,8 @@
     state:  directory
     mode:   '0755'
   loop: "{{ mounts }}"
+  loop_control:
+    label: "{{ item.dir }}"
 
 - name: "Mount disk"
   mount:
@@ -13,6 +15,8 @@
     fstype: "{{ item.fstype }}"
     state:  present
   loop: "{{ mounts }}"
+  loop_control:
+    label: "{{ item.dir }}"
 
 - name: Remount all
   shell: |
