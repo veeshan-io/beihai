@@ -1,5 +1,5 @@
 ---
-- name: "Init user [ {{ item.name }} ]"
+- name: "Init users"
   user:
     # uid:      1045
     user:     "{{ item.name }}"
@@ -8,21 +8,21 @@
     generate_ssh_key:  yes
   loop: "{{ users }}"
 
-- name: "Set user [ {{ item.name }} ] password"
+- name: "Set users password"
   user:
     user:     "{{ item.name }}"
     password: "{{ item.pass }}"
   when: item.pass is defined
   loop: "{{ users }}"
 
-- name: "Set user [ {{ item.name }} ] group"
+- name: "Set users group"
   user:
     user:     "{{ item.name }}"
     groups:   "{{ item.groups }}"
   when: item.groups is defined
   loop: "{{ users }}"
 
-- name: Add authorized key for user [ {{ item.name }} ]
+- name: Add authorized key for users
   authorized_key:
     user:       "{{ item.name }}"
     state:      present
