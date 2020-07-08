@@ -32,6 +32,8 @@ curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fis
 > 如果这里定义了自己的扩展方案并且使用了`omf`的bundle依赖，可以直接安装自己的扩展。
 
 ```sh
+omf install git@github.com:veeshan-io/beihai.git
+# or
 omf install https://github.com/veeshan-io/beihai.git
 ```
 
