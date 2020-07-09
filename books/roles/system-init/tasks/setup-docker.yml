@@ -45,6 +45,12 @@
     dest: /usr/local/bin/docker-compose
     mode: '755'
 
+- name: Set root to docker group
+  user:
+    user:     root
+    groups:   docker
+    state:    present
+
 # Idiot python
 # - name: Pip install py libs for docker
 #   pip:
