@@ -45,8 +45,9 @@
     dest: /usr/local/bin/docker-compose
     mode: '755'
 
-- name: Pip install docker-py
-  pip:
-    name:
-      - docker-py
-      - docker-compose
+# Idiot python
+# - name: Pip install py libs for docker
+#   pip:
+#     name:
+#       - docker-py
+#       - docker-compose

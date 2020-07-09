@@ -27,6 +27,10 @@
   when: brilliant_pass is defined
 
 - name: Startup postgres
-  docker_service:
-    project_src: "{{ postgres_dir }}"
-  register: output
+  # docker_service:
+  #   project_src: "{{ postgres_dir }}"
+  # register: output
+  shell: |
+    docker-compose up -d
+  args:
+    chdir: "{{ postgres_dir }}"
