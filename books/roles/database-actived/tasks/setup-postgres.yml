@@ -18,12 +18,12 @@
 - name: Build docker-compose.yml
   template:
     src: docker-compose.yml
-    dest: "{{ postgres_dir }}"
+    dest: "{{ postgres_dir }}/docker-compose.yml"
 
 - name: Build brilliant
   template:
     src: "docker-entrypoint-initdb.d/brilliant.sql"
-    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d"
+    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
   when: brilliant_pass
 
 - name: Startup postgres
