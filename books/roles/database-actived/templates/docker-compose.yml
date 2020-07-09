@@ -1,0 +1,36 @@
+# Use postgres/example user/password credentials
+version: '3.5'
+
+services:
+
+  db:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    ports:
+      - "{{ postgres_port }}:5432"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD:  {{ postgres_pass }}
+      # POSTGRES_USER: alice          # default: postgres
+      # POSTGRES_DB: main             # default as POSTGRES_USER
+      # POSTGRES_INITDB_ARGS: --data-checksums
+      # POSTGRES_INITDB_WALDIR:
+      # POSTGRES_HOST_AUTH_METHOD: trust
+      # PGDATA: /var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "300m"
+
+  # adminer:
+  #   image: adminer:4-fastcgi
+  #   restart: always
+  #   ports:
+  #     - 25490:9000
+  #   environment:
+  #     ADMINER_DESIGN: nette
+    #   ADMINER_PLUGINS:
+    #   ADMINER_DEFAULT_SERVER:

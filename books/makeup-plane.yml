@@ -6,8 +6,5 @@
   hosts: plane
   remote_user: root
   vars:
-  roles: []
-    # - role: dev-postgres
-      # vars:
-    # - role: dev-k3s
-      # vars:
+  roles:
+    - role: grace-init

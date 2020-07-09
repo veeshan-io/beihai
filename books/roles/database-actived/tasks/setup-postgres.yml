@@ -1,0 +1,32 @@
+---
+- name: Make postgres dir
+  file:
+    path:   "{{ postgres_dir }}"
+    state:  directory
+    mode:   '0755'
+
+- name: Make postgres data dir
+  file:
+    path:   "{{ postgres_dir }}/data"
+    state:  directory
+
+- name: Make postgres initdb dir
+  file:
+    path:   "{{ postgres_dir }}/docker-entrypoint-initdb.d"
+    state:  directory
+
+- name: Build docker-compose.yml
+  template:
+    src: docker-compose.yml
+    dest: "{{ postgres_dir }}"
+
+- name: Build brilliant
+  template:
+    src: "docker-entrypoint-initdb.d/brilliant.sql"
+    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d"
+  when: brilliant_pass
+
+- name: Startup postgres
+  docker_compose:
+    project_src: "{{ postgres_dir }}"
+  register: output

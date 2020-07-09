@@ -6,5 +6,6 @@
   hosts: escort
   remote_user: root
   vars:
-  roles: []
-
+  roles:
+    - role: gateway-actived
+    - role: database-actived

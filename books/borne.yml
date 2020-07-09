@@ -7,4 +7,3 @@
       - ansible
   roles:
     - role: network-init
-    - role: borne-init

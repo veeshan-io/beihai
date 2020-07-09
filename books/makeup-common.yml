@@ -7,5 +7,4 @@
     - role: system-name
     - role: system-init
     - role: network-init
-    - role: grace-init
     - role: system-users

@@ -1,5 +1,4 @@
 ---
-- include: setup-nginx.yml
-  tags: setup-nginx
 - include: setup-postgres.yml
   tags: setup-postgres
+  when: postgres_pass

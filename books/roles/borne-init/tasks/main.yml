@@ -1,3 +1,0 @@
----
-# - include: setup-hosts.yml
-#   tags: setup-hosts

@@ -119,8 +119,6 @@ curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fis
 #curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 ```
 
-> 启用个人batman theme执行`omf install git@github.com:andares/batman.git;omf theme batman`
-
 ### Install `koi` and `RedKoi`
 
 ```sh

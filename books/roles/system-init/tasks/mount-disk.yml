@@ -21,3 +21,15 @@
 - name: Remount all
   shell: |
     mount -a
+
+- name: Change mount dir user
+  file:
+    path:     "{{ item.dir }}"
+    state:    directory
+    owner:    "{{ item.user }}"
+    group:    "{{ item.user }}"
+    recurse:  yes
+  when: item.user is defined
+  loop: "{{ mounts }}"
+  loop_control:
+    label: "{{ item.dir }}"

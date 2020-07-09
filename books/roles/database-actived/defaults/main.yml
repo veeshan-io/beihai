@@ -1,0 +1,7 @@
+---
+# suggest for HOST VARS
+postgres_dir:   /opt/postgres
+postgres_port:  '25432'
+postgres_pass:  no
+brilliant_user: 'alice'
+brilliant_pass: no
