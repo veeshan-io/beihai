@@ -43,7 +43,7 @@ curl -sfL https://gitee.com/andares/installers/raw/master/fish/install-omf | fis
 omf install https://github.com/veeshan-io/beihai.git
 ```
 
-## 基于自己的 ops-repos 安装 Beihai
+## 基于 ops-repos 安装 Beihai
 
 在实际操作中需要创建自己的部署配置文件，这一般作为ops配置托管在一个独立的git仓库中。最佳实践方案是将此ops配置也做成一个omf插件，在项目根下添加文件`bundle`给出内容`package https://github.com/veeshan-io/beihai.git`。之后直接用omf安装自己的ops库即可。
 
