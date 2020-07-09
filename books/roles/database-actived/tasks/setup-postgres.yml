@@ -27,6 +27,6 @@
   when: brilliant_pass is defined and brilliant_pass
 
 - name: Run postgres
-  docker_compose:
+  docker_service:
     project_src: "{{ postgres_dir }}"
   register: output
