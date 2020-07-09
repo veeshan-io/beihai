@@ -24,9 +24,9 @@
   template:
     src: "docker-entrypoint-initdb.d/brilliant.sql"
     dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
-  when: brilliant_pass is defined and brilliant_pass
+  when: brilliant_pass is defined
 
-- name: Run postgres
+- name: Startup postgres
   docker_service:
     project_src: "{{ postgres_dir }}"
   register: output

@@ -1,4 +1,4 @@
 ---
 - include: setup-postgres.yml
   tags: setup-postgres
-  when: postgres_pass
+  when: postgres_pass is defined
