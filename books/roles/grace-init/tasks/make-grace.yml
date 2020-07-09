@@ -3,11 +3,7 @@
   user:
     uid:      2068
     user:     "grace"
+    groups:   docker
     shell:    "/usr/bin/fish"
     state:    present
     generate_ssh_key:  yes
-
-- name: "Set user grace group"
-  user:
-    user:     "grace"
-    groups:   "grace"
