@@ -21,6 +21,10 @@
     state:  latest
     update_cache: yes
 
+- name: Update pip
+  shell: |
+    pip install --upgrade pip
+
 - name: Install apps from apt
   apt:
     name:   "{{ apt_install }}"
