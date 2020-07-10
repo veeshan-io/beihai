@@ -26,8 +26,16 @@
     dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
   when: brilliant_pass is defined
 
+- name: Check postgres is running
+  shell: |
+    docker-compose ps
+  args:
+    chdir: "{{ postgres_dir }}/"
+  register: result
+
 - name: Startup postgres
   shell: |
     docker-compose up -d
   args:
     chdir: "{{ postgres_dir }}/"
+  when: result.stdout.find('postgres_db_1') == -1
