@@ -9,6 +9,12 @@
     chdir: "~/"
   when: apt_repos is defined
 
+- name: Install APTITUDE
+  apt:
+    name:
+      - aptitude
+    state:  present
+
 - name: Upgrade all packages to the latest version
   apt:
     name: "*"
