@@ -17,7 +17,7 @@
       - fish
       - sshpass
       - sudo
-      - python_pip
+      - python-pip
     state:  latest
     update_cache: yes
 
