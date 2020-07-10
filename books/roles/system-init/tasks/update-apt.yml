@@ -23,7 +23,7 @@
 
 - name: Update pip
   shell: |
-    pip install --upgrade pip
+    pip install --upgrade pip;pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 - name: Install apps from apt
   apt:
