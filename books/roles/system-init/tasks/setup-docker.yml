@@ -62,7 +62,7 @@
 #     state:    present
 
 # Idiot python
-- name: Pip install py libs for docker
+- name: Pip install docker-compose & docker-py
   pip:
     name:
       - docker-py

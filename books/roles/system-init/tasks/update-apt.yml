@@ -17,7 +17,8 @@
       - fish
       - sshpass
       - sudo
-    state:  present
+      - python_pip
+    state:  latest
     update_cache: yes
 
 - name: Install apps from apt
