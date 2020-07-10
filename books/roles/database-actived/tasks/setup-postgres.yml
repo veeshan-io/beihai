@@ -26,8 +26,8 @@
     dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
   when: brilliant_pass is defined
 
-# - name: Startup postgres
-  # shell: |
-  #   docker-compose up -d
-  # args:
-  #   chdir: "{{ postgres_dir }}/"
+- name: Startup postgres
+  shell: |
+    docker-compose up -d
+  args:
+    chdir: "{{ postgres_dir }}/"

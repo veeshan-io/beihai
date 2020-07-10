@@ -13,12 +13,14 @@
 
 - name: Add tsinghua docker-ce gpg-key
   apt_key:
-    url: https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian/gpg
+    url: https://repo.huaweicloud.com/docker-ce/linux/debian/gpg
+    # url: https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian/gpg
     state: present
 
 - name: Set apt repository for docker-ce
   apt_repository:
-    repo: "deb [arch=amd64] https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian {{ ansible_distribution_release }} stable"
+    repo: "deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian {{ ansible_distribution_release }} stable"
+    # repo: "deb [arch=amd64] https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian {{ ansible_distribution_release }} stable"
     state: present
 
 - name: Install docker-ce
@@ -34,7 +36,7 @@
     state:  directory
     mode:   '0755'
 
-- name: Set docker deamon config to enable aliyun image source
+- name: Set docker deamon config to enable image source
   template:
     src: docker/daemon.json
     dest: /etc/docker/daemon.json
