@@ -1,5 +1,5 @@
 ---
-# K3s 1.18.* http://beihai.cn-sh2.ufileos.com/depends%2Fk3s-v1.18-k3s1
+# K3s 1.18.* {{ depends.k3s }}
 # Helm 3.3.*
 - name: Setup k3s
   template:
