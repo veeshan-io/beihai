@@ -9,6 +9,12 @@
     chdir: "~/"
   when: apt_repos is defined
 
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
 - name: Install foundation apps from apt
   apt:
     name:
@@ -23,8 +29,7 @@
       - gnupg2
       - software-properties-common
       # - python-pip
-    state:  latest
-    update_cache: yes
+    state:  present
 
 # - name: Update pip
 #   shell: |
@@ -34,7 +39,6 @@
   apt:
     name:   "{{ apt_install }}"
     state:  present
-    update_cache: yes
   when: apt_install is defined
 
 - name: Apt upgrade
