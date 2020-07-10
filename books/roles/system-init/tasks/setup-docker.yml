@@ -1,4 +1,7 @@
 ---
+# docker 目前采用最新版本
+# docker-compose 1.26.*
+
 # 不适合在 ansible 部署方案中移除旧版
 # - name: Remove old version
 #   apt:
@@ -41,9 +44,15 @@
 
 - name: Install docker-compose
   get_url:
-    url: https://plane.cn-sh2.ufileos.com/softwares%2Fdocker-compose-Linux-x86_64
+    url: http://beihai.cn-sh2.ufileos.com/depends%2Fdocker-compose-1.26-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: '755'
+
+- name: Make docker-compose link
+  file:
+    src: /usr/local/bin/docker-compose
+    dest: /bin/docker-compose
+    state:    link
 
 - name: Set root to docker group
   user:
@@ -52,8 +61,7 @@
     state:    present
 
 # Idiot python
-# - name: Pip install py libs for docker
-#   pip:
-#     name:
-#       - docker-py
-#       - docker-compose
+- name: Pip install py libs for docker
+  pip:
+    name:
+      - docker-py

@@ -1,4 +1,6 @@
 ---
+# K3s 1.18.* http://beihai.cn-sh2.ufileos.com/depends%2Fk3s-v1.18-k3s1
+# Helm 3.3.*
 - name: Setup k3s
   template:
     src: etc/hosts.j2

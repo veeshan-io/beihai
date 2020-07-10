@@ -1,5 +1,8 @@
 ---
+# TODO: service 模块并不能真正restart nginx
 - name: restart nginx
-  service:
-    name:   nginx
-    state:  restarted
+  # service:
+  #   name:   nginx
+  #   state:  restarted
+  shell: |
+    service nginx restart
