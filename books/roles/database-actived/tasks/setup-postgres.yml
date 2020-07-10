@@ -26,13 +26,8 @@
     dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
   when: brilliant_pass is defined
 
-# TODO: 这里启动pgs存在问题
-- name: Startup postgres
-  docker_service:
-    project_src: "{{ postgres_dir }}"
-  register: output
-
+# - name: Startup postgres
   # shell: |
   #   docker-compose up -d
   # args:
-  #   chdir: "{{ postgres_dir }}"
+  #   chdir: "{{ postgres_dir }}/"

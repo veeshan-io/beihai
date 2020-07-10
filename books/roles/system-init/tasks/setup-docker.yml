@@ -42,29 +42,27 @@
     - reload daemon
     - restart docker
 
-# 被迫使用 python 的安装方式
-# - name: Install docker-compose
-#   get_url:
-#     url: http://beihai.cn-sh2.ufileos.com/depends%2Fdocker-compose-1.26-Linux-x86_64
-#     dest: /usr/local/bin/docker-compose
-#     mode: '755'
+- name: Install docker-compose
+  get_url:
+    url: http://beihai.cn-sh2.ufileos.com/depends%2Fdocker-compose-1.26-Linux-x86_64
+    dest: /usr/local/bin/docker-compose
+    mode: '755'
 
-# - name: Make docker-compose link
-#   file:
-#     src: /usr/local/bin/docker-compose
-#     dest: /bin/docker-compose
-#     state:    link
+- name: Make docker-compose link
+  file:
+    src: /usr/local/bin/docker-compose
+    dest: /bin/docker-compose
+    state:    link
 
-# - name: Set root to docker group
-#   user:
-#     user:     root
-#     groups:   docker
-#     state:    present
+- name: Set root to docker group
+  user:
+    user:     root
+    groups:   docker
+    state:    present
 
 # Idiot python
-- name: Pip install docker-compose & docker-py
-  pip:
-    name:
-      - docker
-      # - docker-py
-      - docker-compose
+# - name: Pip install docker-compose & docker-py
+#   pip:
+#     name:
+#       - docker-py
+#       - docker-compose
