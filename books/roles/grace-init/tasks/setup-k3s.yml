@@ -2,21 +2,16 @@
 - stat: path="{{ __k3s_binfile }}"
   register: p
 
-# - name: Download k3s
-#   get_url:
-#     url:  "{{ depends.k3s }}"
-#     dest: "{{ __k3s_binfile }}"
-#     mode: '755'
-#   when: __k3s_binfile is not exists
+- name: Download k3s
+  get_url:
+    url:  "{{ depends.k3s }}"
+    dest: "{{ __k3s_binfile }}"
+    mode: '755'
+  when: p.stat.exists == False
 
-# - name: Install k3s
-#   shell: |
-#     curl -sfL https://docs.rancher.cn/k3s/k3s-install.sh | sh -
-#   when: __k3s_binfile is not exists
-
-
-- debug:
-    var:  __k3s_binfile
+- name: Install k3s
+  shell: |
+    curl -sfL https://docs.rancher.cn/k3s/k3s-install.sh | sh -
   when: p.stat.exists == False
 
 - name: Make k3s dir for grace

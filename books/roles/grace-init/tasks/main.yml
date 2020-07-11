@@ -1,6 +1,4 @@
 ---
-# K3s 1.18.* {{ depends.k3s }}
-# Helm 3.3.*
 - include: make-grace.yml
   tags: make-grace
 - include: setup-k3s.yml
