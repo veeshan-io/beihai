@@ -10,6 +10,9 @@
 #   register: file_exists
 #   ignore_errors: true
 
+- debug:
+    var:  __postgres_compose_file
+
 - name: Stop compose
   shell: |
     docker-compose stop
