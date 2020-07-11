@@ -1,0 +1,11 @@
+---
+- name: Update all apt
+  hosts: all
+  remote_user: root
+  vars:
+  tasks:
+    - name: Upgrade all packages to the latest version
+      apt:
+        name: "*"
+        state: latest
+        update_cache: yes
