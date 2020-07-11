@@ -1,0 +1,10 @@
+---
+- name: Update ~/.vimrc
+  template:
+    src: HOME/.vimrc
+    dest: "/home/{{ item.name }}"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"

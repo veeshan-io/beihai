@@ -1,5 +1,7 @@
 ---
 - include: set-user.yml
   tags: set-user
+- include: set-profile.yml
+  tags: set-profile
 - include: ban-user.yml
   tags: ban-user
