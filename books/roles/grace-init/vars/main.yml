@@ -1,2 +1,3 @@
 ---
 __k3s_binfile:  /usr/local/bin/k3s
+__k3s_airgapfile:  /var/lib/rancher/k3s/agent/images/k3s-airgap-images-amd64.tar

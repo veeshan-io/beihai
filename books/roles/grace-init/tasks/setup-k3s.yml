@@ -1,6 +1,15 @@
 ---
+- name: Make k3s images dir
+  file:
+    path:   /var/lib/rancher/k3s/agent/images
+    state:  directory
+    mode:   '0755'
+    recurse:  yes
+
 - stat: path="{{ __k3s_binfile }}"
   register: p
+- stat: path="{{ __k3s_airgapfile }}"
+  register: p2
 
 - name: Download k3s
   get_url:
@@ -8,6 +17,21 @@
     dest: "{{ __k3s_binfile }}"
     mode: '755'
   when: p.stat.exists == False
+
+- name: Download k3s airgap
+  get_url:
+    url:  "{{ depends.k3s_airgap }}"
+    dest: "{{ __k3s_airgapfile }}"
+    mode: '644'
+  when: p2.stat.exists == False
+
+- name: Make k3s dir for grace
+  file:
+    path:     /home/grace/.kube
+    state:    directory
+    owner:    grace
+    group:    grace
+    recurse:  yes
 
 - name: Install k3s
   shell: |

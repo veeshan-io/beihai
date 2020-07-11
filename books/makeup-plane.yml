@@ -5,6 +5,10 @@
 - name: Update plane servers
   hosts: plane
   remote_user: root
+  environment:
+    INSTALL_K3S_SKIP_DOWNLOAD: true
+    INSTALL_K3S_EXEC: --write-kubeconfig ~/.kube/config
+    # INSTALL_K3S_EXEC: --docker --write-kubeconfig ~/.kube/config --write-kubeconfig-mode 666
   vars:
   roles:
     - role: grace-init
