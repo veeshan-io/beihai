@@ -1,0 +1,7 @@
+---
+- name: Update ~/.vimrc for root
+  template:
+    src: HOME/.vimrc
+    dest: /root
+    owner: root
+    group: root

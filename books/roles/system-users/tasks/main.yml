@@ -1,4 +1,6 @@
 ---
+- include: set-root.yml
+  tags: set-root
 - include: set-user.yml
   tags: set-user
 - include: set-profile.yml
