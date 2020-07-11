@@ -1,0 +1,14 @@
+---
+- name: Ping
+  hosts: all
+  remote_user: root
+  # environment:
+  #   PATH: /home/worker/.local/bin:{{ ansible_env.PATH }}
+  vars:
+    checkfile:  /usr/local/bin/docker-compose
+  tasks:
+    - debug:
+        var:  checkfile
+      when: checkfile is exists
+    # - debug:
+    #     msg:  "{{ lookup('file', '{{ filename }}') }}"
