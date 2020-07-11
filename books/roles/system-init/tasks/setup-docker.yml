@@ -31,12 +31,14 @@
     - reload daemon
     - restart docker
 
+- stat: path="{{ __docker_compose_binfile }}"
+  register: p
 - name: Install docker-compose
   get_url:
     url:  "{{ depends.docker_compose }}"
     dest: "{{ __docker_compose_binfile }}"
     mode: '755'
-  when: __docker_compose_binfile is not exists
+  when: p.stat.exists == False
 
 # - name: Set root to docker group
 #   user:
