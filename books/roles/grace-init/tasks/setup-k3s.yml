@@ -1,10 +1,26 @@
 ---
 # K3s 1.18.* {{ depends.k3s }}
 # Helm 3.3.*
-- name: Setup k3s
-  template:
-    src: etc/hosts.j2
-    dest: /etc/hosts
-    owner: root
-    group: root
-    mode: '0644'
+- name: Download k3s
+  get_url:
+    url:  "{{ depends.k3s }}"
+    dest: /usr/local/bin/k3s
+    mode: '755'
+
+- name: Install k3s
+  shell: |
+    curl -sfL https://docs.rancher.cn/k3s/k3s-install.sh | sh -
+
+- name: Make k3s dir for grace
+  file:
+    path:     /home/grace/.kube/config
+    state:    directory
+    recurse:  yes
+
+- name: Setup k3s for grace
+  copy:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /home/grace/.kube/config
+    owner: grace
+    group: grace
+    remote_src: yes

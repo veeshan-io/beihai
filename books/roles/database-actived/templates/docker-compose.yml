@@ -23,7 +23,7 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "300m"
+        max-size: "50m"
 
   # adminer:
   #   image: adminer:4-fastcgi
