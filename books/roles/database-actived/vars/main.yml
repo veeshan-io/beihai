@@ -1,0 +1,2 @@
+---
+__postgres_compose_file: "{{ postgres_dir }}/docker-compose.yml"

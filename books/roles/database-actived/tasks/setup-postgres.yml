@@ -55,3 +55,4 @@
   args:
     chdir: "{{ postgres_dir }}/"
   when: result.stdout.find('postgres_db_1') == -1 or result.stdout.find('Exit') != -1
+  ignore_errors: true
