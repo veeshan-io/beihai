@@ -12,47 +12,48 @@
 
 - debug:
     var:  __postgres_compose_file
-
-- name: Stop compose
-  shell: |
-    docker-compose stop
-  args:
-    chdir: "{{ postgres_dir }}/"
   when: __postgres_compose_file is exists
-  ignore_errors: true
 
-- name: Make postgres data dir
-  file:
-    path:   "{{ postgres_dir }}/data"
-    state:  directory
+# - name: Stop compose
+#   shell: |
+#     docker-compose stop
+#   args:
+#     chdir: "{{ postgres_dir }}/"
+#   when: __postgres_compose_file is exists
+#   ignore_errors: true
 
-- name: Make postgres initdb dir
-  file:
-    path:   "{{ postgres_dir }}/docker-entrypoint-initdb.d"
-    state:  directory
+# - name: Make postgres data dir
+#   file:
+#     path:   "{{ postgres_dir }}/data"
+#     state:  directory
 
-- name: Build docker-compose.yml
-  template:
-    src: docker-compose.yml
-    dest: "{{ __postgres_compose_file }}"
+# - name: Make postgres initdb dir
+#   file:
+#     path:   "{{ postgres_dir }}/docker-entrypoint-initdb.d"
+#     state:  directory
 
-- name: Build brilliant
-  template:
-    src: "docker-entrypoint-initdb.d/brilliant.sql"
-    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
-  when: brilliant_pass is defined
+# - name: Build docker-compose.yml
+#   template:
+#     src: docker-compose.yml
+#     dest: "{{ __postgres_compose_file }}"
 
-- name: Check postgres is running
-  shell: |
-    docker-compose ps
-  args:
-    chdir: "{{ postgres_dir }}/"
-  register: result
+# - name: Build brilliant
+#   template:
+#     src: "docker-entrypoint-initdb.d/brilliant.sql"
+#     dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
+#   when: brilliant_pass is defined
 
-- name: Startup postgres
-  shell: |
-    docker-compose up -d
-  args:
-    chdir: "{{ postgres_dir }}/"
-  when: result.stdout.find('postgres_db_1') == -1 or result.stdout.find('Exit') != -1
-  ignore_errors: true
+# - name: Check postgres is running
+#   shell: |
+#     docker-compose ps
+#   args:
+#     chdir: "{{ postgres_dir }}/"
+#   register: result
+
+# - name: Startup postgres
+#   shell: |
+#     docker-compose up -d
+#   args:
+#     chdir: "{{ postgres_dir }}/"
+#   when: result.stdout.find('postgres_db_1') == -1 or result.stdout.find('Exit') != -1
+#   ignore_errors: true

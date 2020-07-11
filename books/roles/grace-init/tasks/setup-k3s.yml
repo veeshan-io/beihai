@@ -1,16 +1,18 @@
 ---
-# K3s 1.18.* {{ depends.k3s }}
-# Helm 3.3.*
-- name: Download k3s
-  get_url:
-    url:  "{{ depends.k3s }}"
-    dest: "{{ __k3s_binfile }}"
-    mode: '755'
-  when: __k3s_binfile is not exists
+# - name: Download k3s
+#   get_url:
+#     url:  "{{ depends.k3s }}"
+#     dest: "{{ __k3s_binfile }}"
+#     mode: '755'
+#   when: __k3s_binfile is not exists
 
-- name: Install k3s
-  shell: |
-    curl -sfL https://docs.rancher.cn/k3s/k3s-install.sh | sh -
+# - name: Install k3s
+#   shell: |
+#     curl -sfL https://docs.rancher.cn/k3s/k3s-install.sh | sh -
+#   when: __k3s_binfile is not exists
+
+- debug:
+    var:  __k3s_binfile
   when: __k3s_binfile is not exists
 
 - name: Make k3s dir for grace
