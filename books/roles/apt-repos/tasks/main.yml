@@ -7,10 +7,17 @@
   loop_control:
     label: "{{ item.name }}"
 
+- debug:
+    msg:  "{{ item.repo }} {{ ansible_distribution_release }} stable"
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"
+
 - name: Set apt repositories
   apt_repository:
     repo: "{{ item.repo }} {{ ansible_distribution_release }} stable"
     state: present
+    update_cache: no
   loop: "{{ apt_repositories }}"
   loop_control:
     label: "{{ item.name }}"

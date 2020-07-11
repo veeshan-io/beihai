@@ -1,12 +1,5 @@
 ---
-- name: Update apt repos
-  hosts: all
-  remote_user: root
-  vars:
-  roles:
-    - role: apt-repos
-
-- name: Update all apt
+- name: Install APTITUDE
   hosts: all
   remote_user: root
   vars:
@@ -24,6 +17,18 @@
           - aptitude
         state:  present
 
+- name: Update apt repos
+  hosts: all
+  remote_user: root
+  vars:
+  roles:
+    - role: apt-repos
+
+- name: Update all apt
+  hosts: all
+  remote_user: root
+  vars:
+  tasks:
     - name: Upgrade all packages to the latest version
       apt:
         name: "*"
