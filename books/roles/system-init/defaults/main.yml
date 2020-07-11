@@ -8,3 +8,5 @@ mounts: []
   # - dir:    /opt/data01
     # dev:    /dev/vdb1
     # fstype: ext4
+
+__docker_compose_binfile: /usr/local/bin/docker-compose

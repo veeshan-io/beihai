@@ -5,16 +5,17 @@
     state:  directory
     mode:   '0755'
 
-- name: Check compose is exists
-  shell: "ls {{ postgres_dir }}/docker-compose.yml"
-  register: file_exists
-  ignore_errors: true
+# - name: Check compose is exists
+#   shell: "ls {{ postgres_dir }}/docker-compose.yml"
+#   register: file_exists
+#   ignore_errors: true
 
 - name: Stop compose
   shell: |
     docker-compose stop
   args:
     chdir: "{{ postgres_dir }}/"
+  when: __postgres_compose_file is exists
   ignore_errors: true
 
 - name: Make postgres data dir
@@ -30,7 +31,7 @@
 - name: Build docker-compose.yml
   template:
     src: docker-compose.yml
-    dest: "{{ postgres_dir }}/docker-compose.yml"
+    dest: "{{ __postgres_compose_file }}"
 
 - name: Build brilliant
   template:

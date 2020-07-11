@@ -34,8 +34,9 @@
 - name: Install docker-compose
   get_url:
     url:  "{{ depends.docker_compose }}"
-    dest: /usr/local/bin/docker-compose
+    dest: "{{ __docker_compose_binfile }}"
     mode: '755'
+  when: __docker_compose_binfile is not exists
 
 # - name: Set root to docker group
 #   user:

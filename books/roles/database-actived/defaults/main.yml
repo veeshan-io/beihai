@@ -5,3 +5,5 @@ postgres_port:  '25432'
 # postgres_pass:  'yourpass'
 brilliant_user: 'alice'
 # brilliant_pass: 'yourappdbpass'
+
+__postgres_compose_file: "{{ postgres_dir }}/docker-compose.yml"
