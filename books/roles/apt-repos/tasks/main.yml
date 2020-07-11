@@ -1,0 +1,16 @@
+---
+- name: Add apt keys
+  apt_key:
+    url: "{{ item.url }}"
+    state: present
+  loop: "{{ apt_keys }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Set apt repositories
+  apt_repository:
+    repo: "{{ item.repo }} {{ ansible_distribution_release }} stable"
+    state: present
+  loop: "{{ apt_repositories }}"
+  loop_control:
+    label: "{{ item.name }}"

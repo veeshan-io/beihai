@@ -1,0 +1,12 @@
+---
+apt_keys:
+  - name: tsinghua docker
+    url:  https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian/gpg
+  # - name: huawei docker
+  #   url:  https://repo.huaweicloud.com/docker-ce/linux/debian/gpg
+
+apt_repositories:
+  - name: tsinghua docker
+    repo: deb [arch=amd64] https://mirrors4.tuna.tsinghua.edu.cn/docker-ce/linux/debian
+  # - name: huawei docker
+  #   repo: deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian
