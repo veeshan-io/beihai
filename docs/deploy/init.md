@@ -113,13 +113,13 @@ play <your-inv> ping
 ### 正式部署
 
 ```sh
-play <your-inv> all-up
+play <your-inv> update-apt all-up
 ```
 
 如果有自己在`ops-repos`里定义的其他部署脚本，也可以一并写入连续执行：
 
 ```sh
-play <your-inv> all-up <your-book1> <your-book2> <your-book3>
+play <your-inv> update-apt all-up <your-book1> <your-book2> <your-book3>
 ```
 
 ### Borne 暂不支持远程部署

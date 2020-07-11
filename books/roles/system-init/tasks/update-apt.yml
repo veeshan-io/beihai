@@ -40,15 +40,3 @@
     name:   "{{ apt_install }}"
     state:  present
   when: apt_install is defined
-
-- name: Apt upgrade
-  apt:
-    upgrade: yes
-
-- name: Apt autoremove
-  apt:
-    autoremove: yes
-
-- name: Apt autoclean
-  apt:
-    autoclean: yes
