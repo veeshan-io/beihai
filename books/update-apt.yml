@@ -11,6 +11,18 @@
   remote_user: root
   vars:
   tasks:
+    - name: Change apt source
+      shell: |
+        sed -i "s@deb.debian.org@{{ apt_repos }}@g" /etc/apt/sources.list;sed -i "s@security.debian.org@{{ apt_repos }}@g" /etc/apt/sources.list
+      args:
+        chdir: "~/"
+      when: apt_repos is defined
+
+    - name: Install APTITUDE
+      apt:
+        name:
+          - aptitude
+        state:  present
 
     - name: Upgrade all packages to the latest version
       apt:

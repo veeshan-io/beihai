@@ -13,7 +13,7 @@
 
 - name: Make k3s dir for grace
   file:
-    path:     /home/grace/.kube/config
+    path:     /home/grace/.kube
     state:    directory
     recurse:  yes
 

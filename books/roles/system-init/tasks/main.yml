@@ -1,6 +1,6 @@
 ---
-- include: update-apt.yml
-  tags: update-apt
+- include: apt-install-apps.yml
+  tags: apt-install-apps
 - include: setup-docker.yml
   tags: setup-docker
 - include: mount-disk.yml

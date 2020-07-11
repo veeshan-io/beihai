@@ -16,7 +16,6 @@
     name:
       - docker-ce
     state:  present
-    # update_cache: yes
 
 - name: Prepare docker config dir
   file:
