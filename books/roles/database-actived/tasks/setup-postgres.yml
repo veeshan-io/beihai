@@ -15,7 +15,7 @@
     docker-compose stop
   args:
     chdir: "{{ postgres_dir }}/"
-  when: __postgres_compose_file is exists
+  when: "{{__postgres_compose_file}} is exists"
   ignore_errors: true
 
 - name: Make postgres data dir
