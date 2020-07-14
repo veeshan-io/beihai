@@ -37,6 +37,12 @@
     dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
   when: brilliant_pass is defined
 
+- name: Build k3s
+  template:
+    src: "docker-entrypoint-initdb.d/k3s.sql"
+    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/k3s.sql"
+  when: kdb_pass is defined
+
 - name: Check postgres is running
   shell: |
     docker-compose ps
