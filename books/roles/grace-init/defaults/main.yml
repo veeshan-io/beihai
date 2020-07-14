@@ -1,1 +1,3 @@
 ---
+# suggest for HOST or GROUP VARS
+k3s_db_endpoint:  "postgres://kmaster:password@localhost:25432/k3s"

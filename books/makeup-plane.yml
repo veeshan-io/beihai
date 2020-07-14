@@ -8,6 +8,9 @@
   environment:
     INSTALL_K3S_SKIP_DOWNLOAD: true
     INSTALL_K3S_EXEC: --write-kubeconfig ~/.kube/config
+    K3S_DATASTORE_ENDPOINT: "postgres://username:password@hostname:5432/k3s"
+    # K3S_DATASTORE_CERTFILE: "/path/to/client.crt"
+    # K3S_DATASTORE_KEYFILE: "/path/to/client.key"
     # INSTALL_K3S_EXEC: --docker --write-kubeconfig ~/.kube/config --write-kubeconfig-mode 666
   vars:
   roles:
