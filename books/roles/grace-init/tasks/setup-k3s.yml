@@ -35,7 +35,7 @@
 
 - name: Install k3s
   shell: |
-    curl -sfL https://docs.rancher.cn/k3s/k3s-install.sh | sh -
+    curl -sfL {{ depends.k3s_installer }} | sh -
   when: p.stat.exists == False
 
 - name: Make k3s dir for grace
