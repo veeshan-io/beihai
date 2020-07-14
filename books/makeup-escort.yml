@@ -7,5 +7,6 @@
   remote_user: root
   vars:
   roles:
-    - role: gateway-actived
+    # k3s默认会直接在iptables里接管80端口，所以不再在外部安装nginx做反向代理
+    # - role: gateway-actived
     - role: database-actived
