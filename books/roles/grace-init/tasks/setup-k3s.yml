@@ -61,4 +61,4 @@
     iptables-save > /etc/iptables.bak;iptables -F;update-alternatives --set iptables /usr/sbin/iptables-legacy > /dev/null;update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy > /dev/null
   notify:
     - reboot machine
-  when: p2.stat.exists == False
+  when: p3.stat.exists == False
