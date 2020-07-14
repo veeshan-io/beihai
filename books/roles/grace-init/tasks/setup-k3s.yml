@@ -10,6 +10,8 @@
   register: p
 - stat: path="{{ __k3s_airgapfile }}"
   register: p2
+- stat: path="/etc/iptables.bak"
+  register: p3
 
 - name: Download k3s
   get_url:
@@ -53,3 +55,10 @@
     owner: grace
     group: grace
     remote_src: yes
+
+- name: Fix iptables legacy in debian
+  shell: |
+    iptables-save > /etc/iptables.bak;iptables -F;update-alternatives --set iptables /usr/sbin/iptables-legacy > /dev/null;update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy > /dev/null
+  notify:
+    - reboot machine
+  when: p2.stat.exists == False
