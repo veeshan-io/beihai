@@ -6,7 +6,6 @@ users:  []
   #   groups:
   #   pubkey:
   #   sudo:   no
-    # koi:  yes
     # shell:  "/usr/bin/fish"
 
 bans:   []

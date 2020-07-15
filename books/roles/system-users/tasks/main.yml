@@ -5,7 +5,5 @@
   tags: set-user
 - include: set-profile.yml
   tags: set-profile
-- include: setup-koi.yml
-  tags: setup-koi
 - include: ban-user.yml
   tags: ban-user
