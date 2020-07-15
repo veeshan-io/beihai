@@ -7,3 +7,10 @@
     shell:    "/usr/bin/fish"
     state:    present
     generate_ssh_key:  yes
+
+- name: Update ~/.vimrc for grace
+  template:
+    src: HOME/.vimrc
+    dest: /home/grace
+    owner: grace
+    group: grace

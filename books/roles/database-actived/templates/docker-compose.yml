@@ -4,7 +4,6 @@ version: '3.5'
 services:
 
   db:
-    # 开发环境求兼容性使用11，生产环境使用12
     image: postgres:12-alpine
     restart: unless-stopped
     ports:
