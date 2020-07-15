@@ -5,7 +5,7 @@ services:
 
   db:
     # 开发环境求兼容性使用11，生产环境使用12
-    image: postgres:11-alpine
+    image: postgres:12-alpine
     restart: unless-stopped
     ports:
       - "{{ postgres_port }}:5432"
