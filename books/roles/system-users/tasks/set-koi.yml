@@ -1,0 +1,24 @@
+---
+- name: Make dir
+  file:
+    path:   "/home/{{ item.name }}/.config/fish/conf.d"
+    state:  directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    recurse:  yes
+    mode:   '0755'
+  when: item.koi is defined and item.koi
+  loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Install koi
+  copy:
+    src: omf_setup.fish
+    dest: "/home/{{ item.name }}/.config/fish/conf.d"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  when: item.koi is defined and item.koi
+  loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"
