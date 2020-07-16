@@ -1,0 +1,42 @@
+---
+- name: Make redis dir
+  file:
+    path:   "{{ data_path }}/redis"
+    state:  directory
+    mode:   '0755'
+
+- stat: path="{{ __redis_compose_file }}"
+  register: p
+
+- name: Stop compose
+  shell: |
+    docker-compose stop
+  args:
+    chdir: "{{ data_path }}/redis/"
+  when: p.stat.exists
+  ignore_errors: true
+
+- name: Make redis data dir
+  file:
+    path:   "{{ data_path }}/redis/data"
+    state:  directory
+
+- name: Build docker-compose.yml
+  template:
+    src: DATA/redis/docker-compose.yml
+    dest: "{{ __redis_compose_file }}"
+
+- name: Check redis is running
+  shell: |
+    docker-compose ps
+  args:
+    chdir: "{{ data_path }}/redis/"
+  register: result
+
+- name: Startup redis
+  shell: |
+    docker-compose up -d
+  args:
+    chdir: "{{ data_path }}/redis/"
+  when: result.stdout.find('redis_db_1') == -1 or result.stdout.find('Exit') != -1
+  ignore_errors: true

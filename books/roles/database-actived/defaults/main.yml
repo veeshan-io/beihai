@@ -1,9 +1,12 @@
 ---
 # suggest for HOST VARS
-postgres_dir:   /opt/postgres
+data_path:  /opt/data
+
 postgres_port:  '25432'
 # postgres_pass:  'yourpass'
 brilliant_user: 'alice'
 # brilliant_pass: 'yourappdbpass'
 kdb_user: 'kmaster'
 # kdb_pass: 'yourappdbpass'
+
+redis_port: '26379'

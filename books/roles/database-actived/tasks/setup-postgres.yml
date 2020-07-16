@@ -1,7 +1,7 @@
 ---
 - name: Make postgres dir
   file:
-    path:   "{{ postgres_dir }}"
+    path:   "{{ data_path }}/postgres"
     state:  directory
     mode:   '0755'
 
@@ -12,48 +12,48 @@
   shell: |
     docker-compose stop
   args:
-    chdir: "{{ postgres_dir }}/"
+    chdir: "{{ data_path }}/postgres/"
   when: p.stat.exists
   ignore_errors: true
 
 - name: Make postgres data dir
   file:
-    path:   "{{ postgres_dir }}/data"
+    path:   "{{ data_path }}/postgres/data"
     state:  directory
 
 - name: Make postgres initdb dir
   file:
-    path:   "{{ postgres_dir }}/docker-entrypoint-initdb.d"
+    path:   "{{ data_path }}/postgres/docker-entrypoint-initdb.d"
     state:  directory
 
 - name: Build docker-compose.yml
   template:
-    src: docker-compose.yml
+    src: DATA/postgres/docker-compose.yml
     dest: "{{ __postgres_compose_file }}"
 
 - name: Build brilliant
   template:
-    src: "docker-entrypoint-initdb.d/brilliant.sql"
-    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/brilliant.sql"
+    src: "DATA/postgres/docker-entrypoint-initdb.d/brilliant.sql"
+    dest: "{{ data_path }}/postgres/docker-entrypoint-initdb.d/brilliant.sql"
   when: brilliant_pass is defined
 
 - name: Build k3s
   template:
-    src: "docker-entrypoint-initdb.d/k3s.sql"
-    dest: "{{ postgres_dir }}/docker-entrypoint-initdb.d/k3s.sql"
+    src: "DATA/postgres/docker-entrypoint-initdb.d/k3s.sql"
+    dest: "{{ data_path }}/postgres/docker-entrypoint-initdb.d/k3s.sql"
   when: kdb_pass is defined
 
 - name: Check postgres is running
   shell: |
     docker-compose ps
   args:
-    chdir: "{{ postgres_dir }}/"
+    chdir: "{{ data_path }}/postgres/"
   register: result
 
 - name: Startup postgres
   shell: |
     docker-compose up -d
   args:
-    chdir: "{{ postgres_dir }}/"
+    chdir: "{{ data_path }}/postgres/"
   when: result.stdout.find('postgres_db_1') == -1 or result.stdout.find('Exit') != -1
   ignore_errors: true

@@ -1,0 +1,17 @@
+# Use postgres/example user/password credentials
+version: '3.5'
+
+services:
+
+  db:
+    image: 6-alpine
+    restart: unless-stopped
+    ports:
+      - "{{ redis_port }}:6379"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"

@@ -2,3 +2,5 @@
 - include: setup-postgres.yml
   tags: setup-postgres
   when: postgres_pass is defined
+- include: setup-redis.yml
+  tags: setup-redis

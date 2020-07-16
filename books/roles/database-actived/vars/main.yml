@@ -1,2 +1,3 @@
 ---
-__postgres_compose_file: "{{ postgres_dir }}/docker-compose.yml"
+__postgres_compose_file: "{{ data_path }}/postgres/docker-compose.yml"
+__redis_compose_file: "{{ data_path }}/redis/docker-compose.yml"
