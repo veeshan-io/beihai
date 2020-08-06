@@ -28,11 +28,11 @@ for repos in $image_dockerfile_repos
       set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
     end
     if test (count $minors) -gt 0
-      complete -c beihai -n "__koi_subcommand_flow build-image $major" -x -d "Minor" -a $minors
+      complete -c beihai -n "__koi_subcommand_flow 'build-image' $major" -x -d "Minor" -a $minors
     end
   end
 end
 
 if test (count $majors) -gt 0
-  complete -c beihai -n "__koi_subcommand_flow build-image" -x -d "Major" -a $majors
+  complete -c beihai -n "__koi_subcommand_flow 'build-image'" -x -d "Major" -a $majors
 end
