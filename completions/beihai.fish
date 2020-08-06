@@ -22,7 +22,7 @@ for repos in $image_dockerfile_repos
     set majors $majors $major
     set minors
     for subpath in (echo $path/*)
-      if not test -d $path
+      if not test -d $subpath
         continue
       end
       set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
