@@ -5,8 +5,7 @@
 #
 # If your package doesn't provide any command line utility,
 # feel free to remove completions directory from the project.
-
-complete -c beihai -x -d "Command" -a (_beihai.command) -n "__fish_use_subcommand"
+complete -c beihai -x -d "Command" -a (_beihai.command) -n "__koi_no_subcommand_from 'build-image'"
 
 # build-image
 set -l majors
@@ -21,11 +20,13 @@ for repos in $image_dockerfile_repos
     set major (string match -r '([^\/]+)$' $path)[2]
     set majors $majors $major
     set minors
-    for subpath in (echo $path/*)
-      if not test -d $subpath
-        continue
+    for subpaths in (echo $path/*)
+      for subpath in $subpaths
+        if not test -d $subpath
+          continue
+        end
+        set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
       end
-      set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
     end
     if test (count $minors) -gt 0
       complete -c beihai -n "__koi_subcommand_flow 'build-image' $major" -x -d "Minor" -a $minors
