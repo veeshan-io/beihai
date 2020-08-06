@@ -12,7 +12,7 @@ set -l majors
 set -l minors
 set -l major
 for repos in $image_dockerfile_repos
-  for path in (echo $repos/*)
+  for path in (string split ' ' (echo $repos/*))
     if not test -d $path
       continue
     end
@@ -20,13 +20,11 @@ for repos in $image_dockerfile_repos
     set major (string match -r '([^\/]+)$' $path)[2]
     set majors $majors $major
     set minors
-    for subpaths in (echo $path/*)
-      for subpath in $subpaths
-        if not test -d $subpath
-          continue
-        end
-        set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
+    for subpath in (string split ' ' (echo $path/*))
+      if not test -d $subpath
+        continue
       end
+      set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
     end
     if test (count $minors) -gt 0
       complete -c beihai -n "__koi_subcommand_flow 'build-image' $major" -x -d "Minor" -a $minors
