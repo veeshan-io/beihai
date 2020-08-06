@@ -12,7 +12,7 @@ complete -c beihai -x -d "Command" -a (_beihai.command) -n "__fish_use_subcomman
 set -l majors
 set -l minors
 set -l major
-for path in $image_dockerfiles
+for path in $image_dockerfile_repos
   if not test -d $path
     continue
   end
@@ -31,5 +31,6 @@ for path in $image_dockerfiles
   end
 end
 
-echo $majors
-# complete -c beihai -n "__koi_seen_subcommand_from build-image" -x -d "Major" -a $majors
+if test (count $majors) -gt 0
+  complete -c beihai -n "__koi_seen_subcommand_from build-image" -x -d "Major" -a $majors
+end

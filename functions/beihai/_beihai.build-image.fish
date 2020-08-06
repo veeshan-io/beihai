@@ -4,7 +4,7 @@ function _beihai.build-image -d "Build containerd image with docker" -a major mi
     return $OMF_UNKNOWN_OPT
   end
 
-  for path in $image_dockerfiles
+  for path in $image_dockerfile_repos
     if test -f $path/$major/$minor/Dockerfile
       docker build -t $tag $path/$major/$minor
       break
