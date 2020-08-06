@@ -1,5 +1,5 @@
 function _beihai.renew -d "Renew beihai & ops-repos"
-  if test $argv[1] = '--self'
+  if test (count $argv) -gt 0; and test $argv[1] = '--self'
     koi renew-repos $bh_root
   end
 
