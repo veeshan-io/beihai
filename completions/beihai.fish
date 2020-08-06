@@ -30,4 +30,6 @@ for path in $image_dockerfiles
     complete -c beihai -n "__koi_seen_subcommand_from $major" -x -d "Minor" -a $minors
   end
 end
-complete -c beihai -n "__koi_seen_subcommand_from build-image" -x -d "Major" -a $majors
+
+echo $majors
+# complete -c beihai -n "__koi_seen_subcommand_from build-image" -x -d "Major" -a $majors
