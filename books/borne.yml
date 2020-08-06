@@ -1,7 +1,6 @@
 ---
 - import_playbook: update-apt.yml
 
----
 - name: Makeup borne server
   hosts: borne
   remote_user: root
