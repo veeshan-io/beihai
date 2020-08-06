@@ -1,4 +1,8 @@
 function _beihai.renew -d "Renew beihai & ops-repos"
+  if test $argv[1] == '--self'
+    koi renew-repos $bh_root
+  end
+
   if test (count $ops_repos_path) = 1
     koi renew-repos $ops_repos_path
   else
