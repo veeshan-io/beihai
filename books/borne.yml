@@ -7,3 +7,4 @@
       - ansible
   roles:
     - role: network-init
+    - role: system-init
