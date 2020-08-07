@@ -18,12 +18,24 @@ for repos in $image_dockerfile_repos
     end
 
     set major (string match -r '([^\/]+)$' $path)[2]
+    # 跳过 _ 开头目录
+    if test -z (string match -r '^_.*$' $major)
+      continue
+    end
+
     set majors $majors $major
     set minors
     for subpath in (string split ' ' (echo $path/*))
       if not test -d $subpath
         continue
       end
+
+      set minor (string match -r '([^\/]+)$' $subpath)[2]
+      # 跳过 _ 开头目录
+      if test -z (string match -r '^_.*$' $minor)
+        continue
+      end
+
       set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
     end
     if test (count $minors) -gt 0
