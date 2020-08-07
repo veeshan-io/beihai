@@ -11,6 +11,7 @@ complete -c beihai -x -d "Command" -a (_beihai.command) -n "__koi_no_subcommand_
 set -l majors
 set -l minors
 set -l major
+set -l minor
 for repos in $image_dockerfile_repos
   for path in (string split ' ' (echo $repos/*))
     if not test -d $path
@@ -19,7 +20,7 @@ for repos in $image_dockerfile_repos
 
     set major (string match -r '([^\/]+)$' $path)[2]
     # 跳过 _ 开头目录
-    if test -z (string match -r '^_.*$' $major)
+    if not test -z (string match -r '^_.*$' $major)
       continue
     end
 
@@ -32,11 +33,11 @@ for repos in $image_dockerfile_repos
 
       set minor (string match -r '([^\/]+)$' $subpath)[2]
       # 跳过 _ 开头目录
-      if test -z (string match -r '^_.*$' $minor)
+      if not test -z (string match -r '^_.*$' $minor)
         continue
       end
 
-      set minors $minors (string match -r '([^\/]+)$' $subpath)[2]
+      set minors $minors $minor
     end
     if test (count $minors) -gt 0
       complete -c beihai -n "__koi_subcommand_flow 'build-image' $major" -x -d "Minor" -a "$minors"
