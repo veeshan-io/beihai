@@ -15,5 +15,23 @@ set -xg image_dockerfile_repos (dirname (status -f))/images $image_dockerfile_re
 此时只要配置好Dockerfile提交更新至zero机，执行以下指令即可进行构建：
 
 ```sh
-beihai build-image
+beihai build-image <app> <version> <image_tag>
 ```
+
+_Notice: 目录选择上有提示，提示中上面演示的`app`被标识为`Major`，`version`被标识为`Minor`_
+
+## 镜像上传
+
+首先需要docker在本地登录，之后在`ops-repos`的`init.fish`中往全局环境变量`$image_repos_list`列表中追加你的镜像仓库地址及分组前缀，这里以华为云为例：
+
+```sh
+set -xg image_repos_list swr.cn-east-3.myhuaweicloud.com/<yourgroup> $image_repos_list
+```
+
+之后就可以在`zero`机上将本地构建好的镜像使用以下指令上传：
+
+```sh
+beihai upload-image <from_tag> <image_repos> <to_tag>
+```
+
+_Notice: `from_tag`和`image_repos`有提示_

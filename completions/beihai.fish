@@ -56,6 +56,6 @@ set -l from_tags
 for line in (docker images)[2..-1]
   set from_tags (echo $line | awk '{ print $1 ":" $2 }') $from_tags
 end
-complete -c beihai -n "__koi_subcommand_flow upload-image" -x -d "From Tags" -a "$from_tags"
+complete -c beihai -n "__koi_subcommand_flow upload-image" -x -d "From Tag" -a "$from_tags"
 
 complete -c beihai -n "__koi_subcommand_flow upload-image %" -x -d "Image Repos" -a "$image_repos_list"
