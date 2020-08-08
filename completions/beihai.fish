@@ -5,7 +5,7 @@
 #
 # If your package doesn't provide any command line utility,
 # feel free to remove completions directory from the project.
-complete -c beihai -x -d "Command" -a (_beihai.command) -n "__koi_no_subcommand_from 'build-image'"
+complete -c beihai -x -d "Command" -a (_beihai.command) -n "__koi_no_subcommand_from 'build-image' 'upload-image'"
 
 # build-image
 set -l majors
@@ -48,3 +48,12 @@ end
 if test (count $majors) -gt 0
   complete -c beihai -n "__koi_subcommand_flow 'build-image'" -x -d "Major" -a "$majors"
 end
+
+# upload-image
+set -l from_tags
+for line in (docker images)[2..-1]
+  set from_tags (echo $line | awk '{ print $1 ":" $2 }') $from_tags
+end
+echo $from_tags
+
+complete -c beihai -c upload-image -n "__koi_subcommand_pos 2" -x -d "From Tags" -a "$from_tags"
