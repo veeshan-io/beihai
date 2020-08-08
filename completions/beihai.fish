@@ -58,4 +58,4 @@ for line in (docker images)[2..-1]
 end
 complete -c beihai -n "__koi_subcommand_flow upload-image" -x -d "From Tags" -a "$from_tags"
 
-complete -c beihai -n "__koi_subcommand_flow upload-image *" -x -d "Image Repos" -a "$image_repos_list"
+complete -c beihai -n "__koi_subcommand_flow upload-image %" -x -d "Image Repos" -a "$image_repos_list"
