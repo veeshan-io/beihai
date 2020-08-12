@@ -6,9 +6,13 @@
   #   PATH: /home/worker/.local/bin:{{ ansible_env.PATH }}
   vars:
     checkfile:  /usr/local/bin/docker-compose
+    extravar:   no set
   tasks:
     - debug:
         var:  checkfile
-      when: checkfile is exists
+      when: checkfile is exists # 这种文件检测方式仅对local有效
+    - debug:
+        var:  extravar
+      when: extravar is defined
     # - debug:
     #     msg:  "{{ lookup('file', '{{ filename }}') }}"
