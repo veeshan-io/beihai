@@ -41,18 +41,8 @@
 
 - name: Install k3s
   shell: |
-    curl -sfL {{ depends.k3s_installer }} | sh -
+    curl -sfL {{ depends.k3s_installer }} | sh - > /tmp/install_k3s.log
   when: p.stat.exists == False
-  async: 1000
-  poll: 0
-  register: install_k3s_job
-
-- name: Check on install k3s job
-  async_status:
-    jid: "{{ install_k3s_job.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 30
 
 - name: Make k3s dir for grace
   file:
