@@ -35,30 +35,33 @@
     group:    grace
     recurse:  yes
 
-- name: Install k3s
-  shell: |
-    curl -sfL {{ depends.k3s_installer }} | sh -
-  when: p.stat.exists == False
+- debug:
+    var:  ansible_env
 
-- name: Make k3s dir for grace
-  file:
-    path:     /home/grace/.kube
-    state:    directory
-    owner:    grace
-    group:    grace
-    recurse:  yes
+# - name: Install k3s
+#   shell: |
+#     curl -sfL {{ depends.k3s_installer }} | sh -
+#   when: p.stat.exists == False
 
-- name: Setup k3s for grace
-  copy:
-    src: /etc/rancher/k3s/k3s.yaml
-    dest: /home/grace/.kube/config
-    owner: grace
-    group: grace
-    remote_src: yes
+# - name: Make k3s dir for grace
+#   file:
+#     path:     /home/grace/.kube
+#     state:    directory
+#     owner:    grace
+#     group:    grace
+#     recurse:  yes
 
-- name: Fix iptables legacy in debian
-  shell: |
-    iptables-save > /etc/iptables.bak;iptables -F;update-alternatives --set iptables /usr/sbin/iptables-legacy > /dev/null;update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy > /dev/null
-  notify:
-    - reboot machine
-  when: p3.stat.exists == False
+# - name: Setup k3s for grace
+#   copy:
+#     src: /etc/rancher/k3s/k3s.yaml
+#     dest: /home/grace/.kube/config
+#     owner: grace
+#     group: grace
+#     remote_src: yes
+
+# - name: Fix iptables legacy in debian
+#   shell: |
+#     iptables-save > /etc/iptables.bak;iptables -F;update-alternatives --set iptables /usr/sbin/iptables-legacy > /dev/null;update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy > /dev/null
+#   notify:
+#     - reboot machine
+#   when: p3.stat.exists == False
