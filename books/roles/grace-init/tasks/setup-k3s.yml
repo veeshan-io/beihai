@@ -35,13 +35,16 @@
     group:    grace
     recurse:  yes
 
-# - debug:
-#     msg: |
-#       curl -sfL {{ depends.k3s_installer }} | INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--write-kubeconfig ~/.kube/config --datastore-endpoint {{ k3s_db_endpoint }}" K3S_TOKEN="{{ k3s_token }}" sh -
+- debug:
+    var: ansible_env
+  environment:
+    INSTALL_K3S_SKIP_DOWNLOAD: true
+    INSTALL_K3S_EXEC: "--write-kubeconfig ~/.kube/config --datastore-endpoint {{ k3s_db_endpoint }}"
+    K3S_TOKEN: "{{ k3s_token }}"
 
 - name: Install k3s
   shell: |
-    curl -sfL {{ depends.k3s_installer }} | sh - > /tmp/install_k3s.log
+    curl -sfL {{ depends.k3s_installer }} | INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--write-kubeconfig ~/.kube/config --datastore-endpoint {{ k3s_db_endpoint }}" K3S_TOKEN="{{ k3s_token }}" sh - > /tmp/install_k3s.log
   environment:
     INSTALL_K3S_SKIP_DOWNLOAD: true
     INSTALL_K3S_EXEC: "--write-kubeconfig ~/.kube/config --datastore-endpoint {{ k3s_db_endpoint }}"
