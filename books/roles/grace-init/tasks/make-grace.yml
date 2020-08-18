@@ -24,17 +24,17 @@
     group: grace
     recurse:  yes
 
-- name: Autoclean history
+- name: Autoclear history
   copy:
     src: HOME/.config/fish/conf.d/clear-history.fish
     dest: "/home/grace/.config/fish/conf.d/clear-history.fish"
     owner: grace
     group: grace
 
-# - name: Autoclean history
-#   lineinfile:
-#     path: '/home/grace/.bash_logout'
-#     line: 'history -c'
-#     create: yes
-#     owner: grace
-#     group: grace
+- name: Autoclear history for bash
+  lineinfile:
+    path: '/home/grace/.bash_logout'
+    line: 'history -c'
+    create: yes
+    owner: grace
+    group: grace
