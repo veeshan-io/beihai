@@ -45,3 +45,12 @@
   loop: "{{ users }}"
   loop_control:
     label: "{{ item.name }}"
+
+- name: Autoclean history
+  lineinfile:
+    path: '/home/{{ item.name }}/.bash_logout'
+    line: 'history -c'
+    create: yes
+  loop: "{{ users }}"
+  loop_control:
+    label: "{{ item.name }}"

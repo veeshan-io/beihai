@@ -14,13 +14,15 @@
     - debug:
         var:  extravar
       when: extravar is defined
-    - name: lineinfile test1
-      lineinfile:
-        path: '{{ ansible_env.HOME }}/.bash_logout'
-        line: '# abc'
-    - name: lineinfile test2
-      lineinfile:
-        path: '{{ ansible_env.HOME }}/.bash_logout'
-        line: '# def'
+    # - name: lineinfile test1
+    #   lineinfile:
+    #     path: '{{ ansible_env.HOME }}/.bash_logout'
+    #     line: '# abc'
+    #     create: yes
+    # - name: lineinfile test2
+    #   lineinfile:
+    #     path: '{{ ansible_env.HOME }}/.bash_logout'
+    #     line: '# def'
+    #     create: yes
     # - debug:
     #     msg:  "{{ lookup('file', '{{ filename }}') }}"
