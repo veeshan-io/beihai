@@ -51,6 +51,8 @@
     path: '/home/{{ item.name }}/.bash_logout'
     line: 'history -c'
     create: yes
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
   loop: "{{ users }}"
   loop_control:
     label: "{{ item.name }}"
